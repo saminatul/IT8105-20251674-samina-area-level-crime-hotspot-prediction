@@ -1,0 +1,76 @@
+
+===== E4
+                 strategy  ... thr_macro_f1_sd
+0        LR: no weighting  ...             NaN
+1        LR: no weighting  ...             NaN
+2       LR: class weights  ...             NaN
+3       LR: class weights  ...             NaN
+4  LR: SMOTE (train only)  ...             NaN
+5  LR: SMOTE (train only)  ...             NaN
+6      GCN: unweighted CE  ...           0.009
+7      GCN: unweighted CE  ...           0.010
+8        GCN: weighted CE  ...           0.088
+9        GCN: weighted CE  ...           0.013
+
+[10 rows x 9 columns]
+[E4 done in 11.9s]
+
+===== E5
+     model                                variant  mean_degree   edges   p2_ap  p2_ap_sd  p2_topk_macro_f1  p2_auc  p1_macro_f1  p1_macro_f1_sd  p1_acc
+0      GCN  Rook 3.0 km, inverse-distance (pilot)       3.4650   272.0  0.8853    0.0231            0.8603  0.9573       0.4503          0.0188  0.5472
+1      GCN                Rook 3.0 km, unweighted       3.4650   272.0  0.8702    0.0290            0.8681  0.9537       0.4476          0.0109  0.5419
+2      GCN         Queen 3.2 km, inverse-distance       6.7261   528.0  0.8477    0.0237            0.8438  0.9417       0.4409          0.0124  0.5340
+3      GCN        Radius 4.5 km, inverse-distance       9.7452   765.0  0.7794    0.0176            0.7847  0.9170       0.4255          0.0199  0.5178
+4      GCN        Radius 6.6 km, inverse-distance      20.8917  1640.0  0.7289    0.0096            0.7643  0.9014       0.3864          0.0135  0.4795
+5      GCN                   Depth 1 (rook graph)          NaN     NaN  0.8931    0.0090            0.8749  0.9601       0.4534          0.0128  0.5584
+6      GCN                   Depth 2 (rook graph)          NaN     NaN  0.8853    0.0231            0.8603  0.9573       0.4503          0.0188  0.5472
+7      GCN                   Depth 3 (rook graph)          NaN     NaN  0.8715    0.0111            0.8545  0.9554       0.4293          0.0157  0.5281
+8   ResGCN  Rook 3.0 km, inverse-distance (pilot)       3.4650   272.0  0.9750    0.0008            0.9292  0.9926       0.4670          0.0249  0.5667
+9   ResGCN                Rook 3.0 km, unweighted       3.4650   272.0  0.9735    0.0015            0.9272  0.9921       0.4644          0.0199  0.5597
+10  ResGCN         Queen 3.2 km, inverse-distance       6.7261   528.0  0.9729    0.0013            0.9224  0.9921       0.4614          0.0257  0.5531
+11  ResGCN        Radius 4.5 km, inverse-distance       9.7452   765.0  0.9746    0.0011            0.9311  0.9925       0.4596          0.0202  0.5479
+12  ResGCN        Radius 6.6 km, inverse-distance      20.8917  1640.0  0.9758    0.0006            0.9350  0.9928       0.4500          0.0224  0.5422
+13  ResGCN                   Depth 1 (rook graph)          NaN     NaN  0.9586    0.0208            0.9185  0.9860       0.4737          0.0239  0.5908
+14  ResGCN                   Depth 2 (rook graph)          NaN     NaN  0.9750    0.0008            0.9292  0.9926       0.4670          0.0249  0.5667
+15  ResGCN                   Depth 3 (rook graph)          NaN     NaN  0.9728    0.0025            0.9350  0.9918       0.4658          0.0165  0.5693
+16      LR           Without spatial-lag features          NaN     NaN  0.9830       NaN            0.9515  0.9957          NaN             NaN     NaN
+17      LR              With spatial-lag features          NaN     NaN  0.9834       NaN            0.9612  0.9958          NaN             NaN     NaN
+[E5 done in 156.6s]
+
+===== E6
+                     feature_set  n_features  p2_LR_ap  p2_GCN_ap  p2_LR_topk_macro_f1  p2_GCN_topk_macro_f1  p1_LR_macro_f1  p1_GCN_macro_f1
+0                   All features          23     0.983      0.896                0.951                 0.866           0.498            0.448
+1  Without victimisation history          17     0.974      0.895                0.922                 0.856           0.502            0.443
+2     Without composition shares          15     0.983      0.932                0.951                 0.915           0.493            0.457
+3            Without coordinates          21     0.982      0.847                0.942                 0.843           0.507            0.454
+4        Victimisation lags only           4     0.991      0.867                0.951                 0.864           0.340            0.391
+[E6 done in 21.0s]
+
+===== E7
+Traceback (most recent call last):
+  File "/Users/sameertwayana/Downloads/machine-learning-2nd-assignment/Assessment2/code/run_experiments.py", line 881, in <module>
+    ALL[k]()
+  File "/Users/sameertwayana/Downloads/machine-learning-2nd-assignment/Assessment2/code/run_experiments.py", line 575, in E7
+    ps, infos, _, _ = run_nn_seeds("GCN", best["GCN"], "binary", seeds=SEEDS[:5])
+  File "/Users/sameertwayana/Downloads/machine-learning-2nd-assignment/Assessment2/code/run_experiments.py", line 250, in run_nn_seeds
+    model, info = M.train_graph_model(kind, pr(Xtr), ytr, pr(Xva), yva, ei, ew, N, task,
+  File "/Users/sameertwayana/Downloads/machine-learning-2nd-assignment/Assessment2/code/models.py", line 229, in train_graph_model
+    out = model(xtr, eitr, ewtr)
+  File "/Users/sameertwayana/Library/Python/3.9/lib/python/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/sameertwayana/Library/Python/3.9/lib/python/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/sameertwayana/Downloads/machine-learning-2nd-assignment/Assessment2/code/models.py", line 139, in forward
+    x = conv(x, ei, ew)
+  File "/Users/sameertwayana/Library/Python/3.9/lib/python/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/sameertwayana/Library/Python/3.9/lib/python/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/sameertwayana/Library/Python/3.9/lib/python/site-packages/torch_geometric/nn/conv/gcn_conv.py", line 241, in forward
+    edge_index, edge_weight = gcn_norm(  # yapf: disable
+  File "/Users/sameertwayana/Library/Python/3.9/lib/python/site-packages/torch_geometric/nn/conv/gcn_conv.py", line 108, in gcn_norm
+    deg = scatter(edge_weight, idx, dim=0, dim_size=num_nodes, reduce='sum')
+  File "/Users/sameertwayana/Library/Python/3.9/lib/python/site-packages/torch_geometric/utils/_scatter.py", line 75, in scatter
+    return src.new_zeros(size).scatter_add_(dim, index, src)
+RuntimeError: index 587 is out of bounds for dimension 0 with size 570
+python3 run_experiments.py E4 E5 E6 E7 E8 E9 E10 E11 E12 curves E13  295.94s user 34.03s system 156% cpu 3:31.28 total

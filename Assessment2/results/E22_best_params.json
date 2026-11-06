@@ -1,0 +1,31 @@
+{
+  "LR": {
+    "C": 0.1
+  },
+  "RF": {
+    "max_depth": 3,
+    "min_samples_leaf": 5
+  },
+  "MLP": {
+    "hidden": 32,
+    "dropout": 0.3,
+    "lr": 0.01,
+    "wd": 0.005,
+    "layers": 2
+  },
+  "GCN": {
+    "hidden": 128,
+    "dropout": 0.5,
+    "lr": 0.01,
+    "wd": 0.0005,
+    "layers": 2
+  },
+  "ResGCN": {
+    "hidden": 64,
+    "dropout": 0.5,
+    "lr": 0.01,
+    "wd": 0.005,
+    "layers": 2
+  },
+  "KDE": 800
+}

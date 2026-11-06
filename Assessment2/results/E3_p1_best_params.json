@@ -1,0 +1,44 @@
+{
+  "LR": {
+    "C": 100
+  },
+  "SVM": {
+    "C": 0.1,
+    "gamma": "scale"
+  },
+  "RF": {
+    "max_depth": null,
+    "min_samples_leaf": 5
+  },
+  "MLP": {
+    "hidden": 32,
+    "dropout": 0.3,
+    "lr": 0.003,
+    "wd": 0.005,
+    "layers": 2
+  },
+  "GCN": {
+    "hidden": 64,
+    "dropout": 0.5,
+    "lr": 0.01,
+    "wd": 0.005,
+    "layers": 2
+  },
+  "ResGCN": {
+    "hidden": 64,
+    "dropout": 0.3,
+    "lr": 0.01,
+    "wd": 0.0005,
+    "layers": 2
+  },
+  "GAT": {
+    "hidden": 128,
+    "dropout": 0.3,
+    "lr": 0.01,
+    "wd": 0.0005,
+    "layers": 2
+  },
+  "KDE": {
+    "bandwidth_m": 800
+  }
+}

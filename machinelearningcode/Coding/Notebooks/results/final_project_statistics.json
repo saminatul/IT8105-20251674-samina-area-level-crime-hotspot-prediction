@@ -1,0 +1,36 @@
+{
+    "dataset": {
+        "total_crime_records": 228595,
+        "grid_cells": 157,
+        "date_start": "2025-08-24",
+        "date_end": "2026-08-23"
+    },
+    "spatial_graph": {
+        "grid_size_km": 2.2,
+        "neighbour_distance_km": 3.0,
+        "nodes": 157,
+        "directed_edges": 544,
+        "undirected_edges": 272,
+        "isolated_nodes": 0
+    },
+    "phase1_crime_hotspot": {
+        "model": "GCN",
+        "test_accuracy": 0.666667,
+        "test_macro_precision": 0.25,
+        "test_macro_recall": 0.194048,
+        "test_macro_f1": 0.218443,
+        "test_weighted_f1": 0.747354
+    },
+    "phase2_victimisation_risk": {
+        "model": "GCN",
+        "test_accuracy": 0.875,
+        "test_macro_precision": 0.8125,
+        "test_macro_recall": 0.921053,
+        "test_macro_f1": 0.841758,
+        "test_weighted_f1": 0.884066
+    },
+    "high_priority_areas": {
+        "predicted_high_risk_grid_cells": 50,
+        "top_predicted_crime_type": "BATTERY"
+    }
+}

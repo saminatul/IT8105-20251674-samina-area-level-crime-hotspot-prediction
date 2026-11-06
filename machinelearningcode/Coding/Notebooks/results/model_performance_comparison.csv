@@ -1,0 +1,5 @@
+Phase,Model,Task,Accuracy,Macro Precision,Macro Recall,Macro F1,Weighted F1
+Phase 1,GCN,Multi-class Crime Type Prediction,0.666667,0.25,0.194048,0.218443,0.747354
+Phase 1,SVM,Multi-class Crime Type Prediction,0.375,0.152778,0.119444,0.134039,0.419312
+Phase 1,KDE,Binary Hotspot Detection,0.949,0.875,0.875,0.875,
+Phase 2,Victimisation GCN,Binary Victimisation Risk Prediction,0.875,0.8125,0.921053,0.841758,0.884066

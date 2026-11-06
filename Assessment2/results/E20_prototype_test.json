@@ -1,0 +1,123 @@
+{
+  "rank_interval_contains_point_rank_share": 1.0,
+  "near_cutoff_cells_test": 10,
+  "near_cutoff_error_rate": 0.4,
+  "non_near_cutoff_error_rate": 0.019736842105263157,
+  "latency_ms_all": {
+    "p50": 0.41106250000000344,
+    "p95": 0.4754669999999794,
+    "max": 0.9823749999999798,
+    "n": 600
+  },
+  "latency_ms_by_endpoint_p50": {
+    "/v1/forecasts?period=13&top_k=32": 0.293417000000018,
+    "/v1/forecasts?period=12&top_k=157": 0.44618749999997265,
+    "/v1/cells/12_7/history": 0.28537500000003213,
+    "/dashboard?period=13": 0.4460829999999305
+  },
+  "store_bytes": 422974,
+  "checks": [
+    {
+      "test": "health endpoint open and reports versions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "missing API key rejected (401)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "wrong API key rejected (401)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "viewer cannot read cell history (403)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "analyst can read cell history",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "unknown cell -> 404",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "non-integer period -> 400",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "unknown period -> 400",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "top_k=0 -> 400",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "top_k=1000 -> 400",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "unknown grid version -> 400",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "forecast for unclosed period flagged period_closed=false",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "response carries disclaimer, model and schema version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "response carries the City of Chicago data-modification notice",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "ranks are 1..32 with no gaps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "serving parity: AP on test periods equals offline experiment E2",
+      "passed": true,
+      "detail": "served 0.9830 vs offline 0.9830 (served scores rounded to 4 d.p.)"
+    },
+    {
+      "test": "serving parity: top-20% precision/recall equal offline",
+      "passed": true,
+      "detail": "served 0.938/0.909 vs offline 0.938/0.909"
+    },
+    {
+      "test": "dashboard renders for viewer with disclaimer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "store with mismatched feature schema is refused at start-up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "test": "every request written to the audit log",
+      "passed": true,
+      "detail": "617 lines"
+    }
+  ],
+  "n_passed": 20,
+  "n_checks": 20
+}

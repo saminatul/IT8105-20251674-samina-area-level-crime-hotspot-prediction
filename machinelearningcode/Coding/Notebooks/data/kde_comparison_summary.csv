@@ -1,0 +1,8 @@
+Metric,Value
+KDE Accuracy,0.949
+KDE Precision,0.875
+KDE Recall,0.875
+KDE F1,0.875
+Crime Frequency vs KDE Correlation,0.9786807446202558
+Number of Grid Cells,157.0
+Number of KDE Hotspots,32.0

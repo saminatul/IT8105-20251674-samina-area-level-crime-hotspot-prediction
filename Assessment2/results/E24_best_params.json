@@ -1,0 +1,12 @@
+{
+  "phase2": {
+    "learning_rate": 0.1,
+    "max_depth": 3,
+    "max_iter": 300
+  },
+  "phase1": {
+    "learning_rate": 0.03,
+    "max_depth": 3,
+    "max_iter": 300
+  }
+}

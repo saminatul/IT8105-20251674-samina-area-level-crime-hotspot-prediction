@@ -1,0 +1,82 @@
+{
+    "accuracy": 0.5987261146496815,
+    "macro_precision": 0.2751125325752191,
+    "macro_recall": 0.4583024462564863,
+    "macro_f1": 0.27035033931585656,
+    "weighted_f1": 0.651199009643991,
+    "number_of_grid_cells": 157,
+    "confusion_matrix": [
+        [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            49,
+            5,
+            17,
+            0,
+            0,
+            5
+        ],
+        [
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            18,
+            1,
+            12,
+            0,
+            0,
+            40
+        ]
+    ],
+    "class_names": [
+        "ASSAULT",
+        "BATTERY",
+        "CRIMINAL DAMAGE",
+        "DECEPTIVE PRACTICE",
+        "MOTOR VEHICLE THEFT",
+        "SEX OFFENSE",
+        "THEFT"
+    ]
+}

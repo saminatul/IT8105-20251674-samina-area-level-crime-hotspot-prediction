@@ -1,0 +1,103 @@
+{
+  "cleaning_log": [
+    [
+      "Raw records",
+      229275
+    ],
+    [
+      "After exact-duplicate removal",
+      229273
+    ],
+    [
+      "After missing-coordinate removal",
+      229233
+    ],
+    [
+      "After study-boundary filter",
+      228595
+    ]
+  ],
+  "p1_pilot_argmax_rule_accuracy_all_cells": 1.0,
+  "p1_pilot_label_counts": {
+    "BATTERY": 76,
+    "THEFT": 71,
+    "DECEPTIVE PRACTICE": 3,
+    "CRIMINAL DAMAGE": 2,
+    "MOTOR VEHICLE THEFT": 2,
+    "ASSAULT": 2,
+    "SEX OFFENSE": 1
+  },
+  "p1_pilot_has_target_col": true,
+  "graph": {
+    "nodes": 157,
+    "directed_edges": 544,
+    "undirected": 272,
+    "unique_edge_lengths_km": [
+      2.2
+    ],
+    "unique_weights": [
+      0.4545
+    ],
+    "isolated": 0,
+    "mean_degree": 3.464968152866242,
+    "diagonal_neighbour_distance_km": 3.1112698372208096
+  },
+  "p2_pilot_file_string_bug": true,
+  "p2_pilot_split": {
+    "train": 109,
+    "val": 24,
+    "test": 24,
+    "test_pos": 5,
+    "total_pos": 32
+  },
+  "p2_pilot_LR": {
+    "pos_f1": 1.0,
+    "macro_f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "accuracy": 1.0,
+    "balanced_acc": 1.0,
+    "roc_auc": 1.0,
+    "avg_precision": 1.0,
+    "prec_at_k": 1.0,
+    "n": 24,
+    "n_pos": 5,
+    "n_flagged": 5,
+    "brier": 0.0016410694551911257
+  },
+  "p2_pilot_persistence_trainthr": {
+    "pos_f1": 1.0,
+    "macro_f1": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "accuracy": 1.0,
+    "balanced_acc": 1.0,
+    "roc_auc": 1.0,
+    "avg_precision": 1.0,
+    "prec_at_k": 1.0,
+    "n": 24,
+    "n_pos": 5,
+    "n_flagged": 5
+  },
+  "p2_pilot_GCN_reported": {
+    "accuracy": 0.875,
+    "macro_precision": 0.8125,
+    "macro_recall": 0.9210526315789473,
+    "macro_f1": 0.8417582417582418,
+    "weighted_f1": 0.884065934065934,
+    "test_size": 24,
+    "train_size": 109,
+    "validation_size": 24,
+    "confusion_matrix": [
+      [
+        16,
+        3
+      ],
+      [
+        0,
+        5
+      ]
+    ]
+  },
+  "p2_pilot_spearman_hist_future": 0.9894440599743815
+}

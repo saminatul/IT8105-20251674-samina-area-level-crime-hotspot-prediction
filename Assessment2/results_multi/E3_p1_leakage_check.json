@@ -1,0 +1,5 @@
+{
+  "argmax_rule_accuracy_same_window": 1.0,
+  "n": 899,
+  "note": "label is by construction argmax of same-window counts"
+}

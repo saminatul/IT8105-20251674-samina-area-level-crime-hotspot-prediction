@@ -1,0 +1,10 @@
+{
+  "incidents_matched_to_community_area": 0.9971784159758524,
+  "cells": 156,
+  "hardship_tercile_cutoffs": [
+    29.6032842494796,
+    61.095538720538705
+  ],
+  "spearman_hardship_vs_test_victimisation": 0.37438172373017786,
+  "census_source": "City of Chicago, Census Data - Selected socioeconomic indicators 2008-2012 (kn9c-c2s2)"
+}

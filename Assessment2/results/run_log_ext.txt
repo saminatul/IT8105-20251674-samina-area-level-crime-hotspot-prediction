@@ -1,0 +1,35 @@
+
+===== E24
+phase                  1       2
+seed              2.0000  2.0000
+fit_seconds          NaN  0.2764
+val_best          0.5259  0.9615
+topk_pos_f1          NaN  0.8769
+topk_macro_f1        NaN  0.9224
+topk_precision       NaN  0.8906
+topk_recall          NaN  0.8636
+topk_accuracy        NaN  0.9490
+roc_auc              NaN  0.9924
+avg_precision        NaN  0.9746
+accuracy          0.5842     NaN
+macro_f1          0.4628     NaN
+weighted_f1       0.5907     NaN
+balanced_acc      0.4749     NaN
+kappa             0.3726     NaN
+n               303.0000     NaN
+f1_c0             0.6615     NaN
+f1_c1             0.2000     NaN
+f1_c2             0.6696     NaN
+f1_c3             0.3200     NaN
+[E24 done in 29.0s]
+
+===== E22
+         model  topk_pos_f1  topk_macro_f1  topk_precision  topk_recall  topk_accuracy  roc_auc  avg_precision  ap_sd  n_violent_incidents  share_of_records  test_prevalence  label_agreement_with_main  label_jaccard_with_main
+0  Persistence        0.838          0.897           0.891        0.792          0.930    0.979          0.943    NaN                20376             0.089            0.229                      0.936                    0.747
+1          KDE        0.853          0.906           0.906        0.806          0.936    0.978          0.939    NaN                20376             0.089            0.229                      0.936                    0.747
+2           LR        0.853          0.906           0.906        0.806          0.936    0.979          0.940    NaN                20376             0.089            0.229                      0.936                    0.747
+3           RF        0.847          0.902           0.900        0.800          0.934    0.979          0.932    NaN                20376             0.089            0.229                      0.936                    0.747
+4          MLP        0.847          0.902           0.900        0.800          0.934    0.976          0.931  0.003                20376             0.089            0.229                      0.936                    0.747
+5          GCN        0.771          0.854           0.819        0.728          0.901    0.950          0.874  0.014                20376             0.089            0.229                      0.936                    0.747
+6       ResGCN        0.838          0.897           0.891        0.792          0.930    0.973          0.920  0.003                20376             0.089            0.229                      0.936                    0.747
+[E22 done in 60.6s]

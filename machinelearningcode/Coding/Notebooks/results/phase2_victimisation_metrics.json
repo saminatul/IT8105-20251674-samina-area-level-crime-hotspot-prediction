@@ -1,0 +1,20 @@
+{
+    "accuracy": 0.875,
+    "macro_precision": 0.8125,
+    "macro_recall": 0.9210526315789473,
+    "macro_f1": 0.8417582417582418,
+    "weighted_f1": 0.884065934065934,
+    "test_size": 24,
+    "train_size": 109,
+    "validation_size": 24,
+    "confusion_matrix": [
+        [
+            16,
+            3
+        ],
+        [
+            0,
+            5
+        ]
+    ]
+}

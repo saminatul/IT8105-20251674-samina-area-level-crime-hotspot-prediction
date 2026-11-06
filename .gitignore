@@ -1,0 +1,15 @@
+
+```gitignore
+.DS_Store
+__pycache__/
+*.pyc
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.xdv
+*.fdb_latexmk
+*.fls
+*.synctex.gz

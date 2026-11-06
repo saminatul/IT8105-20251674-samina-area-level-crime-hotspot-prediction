@@ -1,0 +1,76 @@
+
+===== E22
+         model  topk_pos_f1  topk_macro_f1  topk_precision  topk_recall  topk_accuracy  roc_auc  avg_precision  ap_sd  n_violent_incidents  share_of_records  test_prevalence  label_agreement_with_main  label_jaccard_with_main
+0  Persistence        0.838          0.897           0.891        0.792          0.930    0.979          0.943    NaN                20376             0.089            0.229                      0.936                    0.747
+1          KDE        0.853          0.906           0.906        0.806          0.936    0.978          0.939    NaN                20376             0.089            0.229                      0.936                    0.747
+2           LR        0.853          0.906           0.906        0.806          0.936    0.979          0.940    NaN                20376             0.089            0.229                      0.936                    0.747
+3           RF        0.847          0.902           0.900        0.800          0.934    0.979          0.932    NaN                20376             0.089            0.229                      0.936                    0.747
+4          MLP        0.847          0.902           0.900        0.800          0.934    0.976          0.931  0.003                20376             0.089            0.229                      0.936                    0.747
+5          GCN        0.771          0.854           0.819        0.728          0.901    0.950          0.874  0.014                20376             0.089            0.229                      0.936                    0.747
+6       ResGCN        0.838          0.897           0.891        0.792          0.930    0.973          0.920  0.003                20376             0.089            0.229                      0.936                    0.747
+[E22 done in 57.9s]
+
+===== E23
+{
+ "incidents_matched_to_community_area": 0.9971784159758524,
+ "cells": 156,
+ "hardship_tercile_cutoffs": [
+  29.6032842494796,
+  61.095538720538705
+ ],
+ "spearman_hardship_vs_test_victimisation": 0.37438172373017786,
+ "census_source": "City of Chicago, Census Data - Selected socioeconomic indicators 2008-2012 (kn9c-c2s2)"
+}
+    phase        model          group  n_cells    n  prevalence  flag_rate  recall    fpr  precision  error_rate     ap  recall_lo  recall_hi  fpr_lo  fpr_hi  macro_f1
+0       2           LR   low hardship       52  104       0.125      0.125   0.846  0.022      0.846       0.038  0.880      0.600      1.000   0.000   0.060       NaN
+1       2           LR         middle       52  104       0.163      0.154   0.824  0.023      0.875       0.048  0.967      0.583      1.000   0.000   0.060       NaN
+2       2           LR  high hardship       52  104       0.346      0.337   0.972  0.000      1.000       0.010  1.000      0.900      1.000   0.000   0.000       NaN
+3       2  Persistence   low hardship       52  104       0.125      0.106   0.692  0.022      0.818       0.058  0.929      0.333      0.923   0.000   0.058       NaN
+4       2  Persistence         middle       52  104       0.163      0.173   0.941  0.023      0.889       0.029  0.957      0.778      1.000   0.000   0.060       NaN
+5       2  Persistence  high hardship       52  104       0.346      0.337   0.917  0.029      0.943       0.048  0.989      0.778      1.000   0.000   0.071       NaN
+6       2           RF   low hardship       52  104       0.125      0.115   0.769  0.022      0.833       0.048  0.948      0.400      1.000   0.000   0.057       NaN
+7       2           RF         middle       52  104       0.163      0.173   0.941  0.023      0.889       0.029  0.982      0.778      1.000   0.000   0.060       NaN
+8       2           RF  high hardship       52  104       0.346      0.327   0.944  0.000      1.000       0.019  1.000      0.812      1.000   0.000   0.000       NaN
+9       2       ResGCN   low hardship       52  104       0.125      0.077   0.538  0.011      0.875       0.067  0.870      0.077      0.900   0.000   0.035       NaN
+10      2       ResGCN         middle       52  104       0.163      0.173   0.941  0.023      0.889       0.029  0.962      0.786      1.000   0.000   0.062       NaN
+11      2       ResGCN  high hardship       52  104       0.346      0.365   0.972  0.044      0.921       0.038  0.996      0.906      1.000   0.000   0.118       NaN
+12      2          GCN   low hardship       52  104       0.125      0.106   0.538  0.044      0.636       0.096  0.812      0.154      0.900   0.000   0.099       NaN
+13      2          GCN         middle       52  104       0.163      0.144   0.529  0.069      0.600       0.135  0.653      0.190      0.834   0.012   0.131       NaN
+14      2          GCN  high hardship       52  104       0.346      0.365   0.972  0.044      0.921       0.038  0.982      0.909      1.000   0.000   0.118       NaN
+15      1           LR   low hardship       51   98         NaN        NaN     NaN    NaN        NaN       0.490    NaN        NaN        NaN     NaN     NaN     0.338
+16      1           LR         middle       52  104         NaN        NaN     NaN    NaN        NaN       0.442    NaN        NaN        NaN     NaN     NaN     0.461
+17      1           LR  high hardship       51  101         NaN        NaN     NaN    NaN        NaN       0.238    NaN        NaN        NaN     NaN     NaN     0.560
+18      1  Persistence   low hardship       51   98         NaN        NaN     NaN    NaN        NaN       0.388    NaN        NaN        NaN     NaN     NaN     0.398
+19      1  Persistence         middle       52  104         NaN        NaN     NaN    NaN        NaN       0.442    NaN        NaN        NaN     NaN     NaN     0.357
+20      1  Persistence  high hardship       51  101         NaN        NaN     NaN    NaN        NaN       0.356    NaN        NaN        NaN     NaN     NaN     0.320
+21      1          MLP   low hardship       51   98         NaN        NaN     NaN    NaN        NaN       0.500    NaN        NaN        NaN     NaN     NaN     0.269
+22      1          MLP         middle       52  104         NaN        NaN     NaN    NaN        NaN       0.442    NaN        NaN        NaN     NaN     NaN     0.462
+23      1          MLP  high hardship       51  101         NaN        NaN     NaN    NaN        NaN       0.287    NaN        NaN        NaN     NaN     NaN     0.520
+24      1          GCN   low hardship       51   98         NaN        NaN     NaN    NaN        NaN       0.520    NaN        NaN        NaN     NaN     NaN     0.287
+25      1          GCN         middle       52  104         NaN        NaN     NaN    NaN        NaN       0.481    NaN        NaN        NaN     NaN     NaN     0.440
+26      1          GCN  high hardship       51  101         NaN        NaN     NaN    NaN        NaN       0.347    NaN        NaN        NaN     NaN     NaN     0.412
+[E23 done in 18.5s]
+
+===== E24
+phase                  1       2
+seed              2.0000  2.0000
+fit_seconds          NaN  0.1738
+val_best          0.5259  0.9615
+topk_pos_f1          NaN  0.8769
+topk_macro_f1        NaN  0.9224
+topk_precision       NaN  0.8906
+topk_recall          NaN  0.8636
+topk_accuracy        NaN  0.9490
+roc_auc              NaN  0.9924
+avg_precision        NaN  0.9746
+accuracy          0.5842     NaN
+macro_f1          0.4628     NaN
+weighted_f1       0.5907     NaN
+balanced_acc      0.4749     NaN
+kappa             0.3726     NaN
+n               303.0000     NaN
+f1_c0             0.6615     NaN
+f1_c1             0.2000     NaN
+f1_c2             0.6696     NaN
+f1_c3             0.3200     NaN
+[E24 done in 17.2s]

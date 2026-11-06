@@ -1,0 +1,124 @@
+
+===== E1
+best {'LR': {'C': 100}, 'SVM': {'C': 100, 'gamma': 0.01}, 'RF': {'max_depth': None, 'min_samples_leaf': 5}, 'MLP': {'hidden': 32, 'dropout': 0.3, 'lr': 0.01, 'wd': 0.0005, 'layers': 2}, 'GCN': {'hidden': 128, 'dropout': 0.3, 'lr': 0.01, 'wd': 0.0005, 'layers': 2}, 'ResGCN': {'hidden': 32, 'dropout': 0.5, 'lr': 0.01, 'wd': 0.005, 'layers': 2}, 'GAT': {'hidden': 128, 'dropout': 0.3, 'lr': 0.01, 'wd': 0.0005, 'layers': 2}, 'KDE': {'bandwidth_m': 800}}
+                                     topk_macro_f1  ... thr_macro_f1
+                                              mean  ...         mean
+model                                               ...             
+Majority (all low)                             NaN  ...       0.4437
+Persistence (lagged counts)                 0.9347  ...          NaN
+KDE (victimisation, prior 3 periods)        0.9249  ...          NaN
+LR                                          0.9282  ...       0.9330
+SVM                                         0.9151  ...       0.9246
+RF                                          0.9318  ...       0.9336
+MLP                                         0.9308  ...       0.9288
+GCN                                         0.8655  ...       0.8625
+ResGCN                                      0.9288  ...       0.9270
+GAT                                         0.8619  ...       0.8565
+
+[10 rows x 6 columns]
+[E1 done in 452.4s]
+
+===== E3
+                                             accuracy         ...  f1_c3       
+                                                 mean    std  ...   mean    std
+model                                                         ...              
+Majority class                                  0.403    NaN  ...  0.000    NaN
+Persistence (dominant type, prior 3 periods)    0.636    NaN  ...  0.237    NaN
+KDE (per-category density)                      0.624    NaN  ...  0.338    NaN
+LR                                              0.611    NaN  ...  0.277    NaN
+SVM                                             0.583    NaN  ...  0.378    NaN
+RF                                              0.600  0.005  ...  0.396  0.006
+MLP                                             0.580  0.010  ...  0.325  0.014
+GCN                                             0.529  0.005  ...  0.348  0.014
+ResGCN                                          0.575  0.008  ...  0.343  0.029
+GAT                                             0.531  0.016  ...  0.330  0.021
+
+[10 rows x 16 columns]
+[E3 done in 175.5s]
+
+===== E8
+    test_period  n_train_periods task        model     ap  topk_macro_f1    auc  ap_sd  macro_f1
+0            33               29   P2       ResGCN  0.944          0.902  0.984  0.001       NaN
+1            33               29   P2  Persistence  0.931          0.902  0.983    NaN       NaN
+2            33               29   P2          KDE  0.946          0.922  0.984    NaN       NaN
+3            33               29   P2           LR  0.933          0.902  0.983    NaN       NaN
+4            33               29   P2          GCN  0.855          0.867  0.949  0.004       NaN
+5            33               29   P1           LR    NaN            NaN    NaN    NaN     0.500
+6            33               29   P1  Persistence    NaN            NaN    NaN    NaN     0.506
+7            33               29   P1          GCN    NaN            NaN    NaN    NaN     0.453
+8            34               30   P2       ResGCN  0.955          0.922  0.986  0.003       NaN
+9            34               30   P2  Persistence  0.952          0.941  0.985    NaN       NaN
+10           34               30   P2          KDE  0.922          0.922  0.977    NaN       NaN
+11           34               30   P2           LR  0.959          0.922  0.987    NaN       NaN
+12           34               30   P2          GCN  0.858          0.863  0.955  0.005       NaN
+13           34               30   P1           LR    NaN            NaN    NaN    NaN     0.461
+14           34               30   P1  Persistence    NaN            NaN    NaN    NaN     0.423
+15           34               30   P1          GCN    NaN            NaN    NaN    NaN     0.443
+16           35               31   P2       ResGCN  0.981          0.941  0.994  0.002       NaN
+17           35               31   P2  Persistence  0.966          0.941  0.990    NaN       NaN
+18           35               31   P2          KDE  0.954          0.902  0.989    NaN       NaN
+19           35               31   P2           LR  0.964          0.941  0.990    NaN       NaN
+20           35               31   P2          GCN  0.940          0.902  0.979  0.008       NaN
+21           35               31   P1           LR    NaN            NaN    NaN    NaN     0.489
+22           35               31   P1  Persistence    NaN            NaN    NaN    NaN     0.479
+23           35               31   P1          GCN    NaN            NaN    NaN    NaN     0.388
+24           36               32   P2       ResGCN  0.955          0.941  0.988  0.006       NaN
+25           36               32   P2  Persistence  0.976          0.961  0.994    NaN       NaN
+26           36               32   P2          KDE  0.931          0.922  0.983    NaN       NaN
+27           36               32   P2           LR  0.970          0.922  0.992    NaN       NaN
+28           36               32   P2          GCN  0.915          0.882  0.973  0.004       NaN
+29           36               32   P1           LR    NaN            NaN    NaN    NaN     0.540
+30           36               32   P1  Persistence    NaN            NaN    NaN    NaN     0.402
+31           36               32   P1          GCN    NaN            NaN    NaN    NaN     0.465
+32           37               33   P2       ResGCN  0.971          0.941  0.993  0.002       NaN
+33           37               33   P2  Persistence  0.959          0.922  0.990    NaN       NaN
+34           37               33   P2          KDE  0.935          0.922  0.985    NaN       NaN
+35           37               33   P2           LR  0.972          0.941  0.994    NaN       NaN
+36           37               33   P2          GCN  0.925          0.914  0.976  0.005       NaN
+37           37               33   P1           LR    NaN            NaN    NaN    NaN     0.463
+38           37               33   P1  Persistence    NaN            NaN    NaN    NaN     0.386
+39           37               33   P1          GCN    NaN            NaN    NaN    NaN     0.454
+40           38               34   P2       ResGCN  0.973          0.941  0.993  0.002       NaN
+41           38               34   P2  Persistence  0.959          0.941  0.989    NaN       NaN
+42           38               34   P2          KDE  0.980          0.961  0.996    NaN       NaN
+43           38               34   P2           LR  0.972          0.961  0.994    NaN       NaN
+44           38               34   P2          GCN  0.963          0.922  0.991  0.003       NaN
+45           38               34   P1           LR    NaN            NaN    NaN    NaN     0.438
+46           38               34   P1  Persistence    NaN            NaN    NaN    NaN     0.370
+47           38               34   P1          GCN    NaN            NaN    NaN    NaN     0.393
+[E8 done in 102.3s]
+
+===== E10
+                                  quantity  point     lo     hi  share_positive  n_blocks
+0                           AP Persistence  0.951  0.899  0.979             NaN      26.0
+1                                   AP KDE  0.943  0.875  0.978             NaN      26.0
+2                                    AP LR  0.958  0.904  0.984             NaN      26.0
+3                                   AP SVM  0.952  0.889  0.980             NaN      26.0
+4                                    AP RF  0.965  0.923  0.988             NaN      26.0
+5                                   AP MLP  0.958  0.907  0.985             NaN      26.0
+6                                   AP GCN  0.876  0.780  0.930             NaN      26.0
+7                                AP ResGCN  0.964  0.923  0.987             NaN      26.0
+8                                   AP GAT  0.876  0.788  0.932             NaN      26.0
+9                     AP difference GCN-LR -0.083 -0.146 -0.045           0.000      26.0
+10           AP difference GCN-Persistence -0.077 -0.147 -0.033           0.000      26.0
+11            AP difference LR-Persistence  0.007 -0.005  0.016           0.904      26.0
+12                   AP difference GCN-MLP -0.084 -0.154 -0.042           0.000      26.0
+13                AP difference ResGCN-MLP  0.006 -0.002  0.021           0.898      26.0
+14                AP difference ResGCN-GCN  0.090  0.044  0.165           1.000      26.0
+15                     AP difference RF-LR  0.008 -0.002  0.024           0.916      26.0
+16                 AP difference ResGCN-LR  0.007 -0.004  0.026           0.852      26.0
+17                   AP difference GAT-MLP -0.082 -0.147 -0.037           0.000      26.0
+18                   AP difference GAT-GCN  0.002 -0.048  0.059           0.510      26.0
+19            AP GCN (naive iid bootstrap)  0.876  0.837  0.910             NaN      26.0
+20                 P1 macro-F1 Persistence  0.427  0.393  0.453             NaN       NaN
+21                         P1 macro-F1 KDE  0.467  0.426  0.506             NaN       NaN
+22                          P1 macro-F1 LR  0.469  0.422  0.501             NaN       NaN
+23                         P1 macro-F1 SVM  0.492  0.436  0.533             NaN       NaN
+24                          P1 macro-F1 RF  0.503  0.452  0.541             NaN       NaN
+25                         P1 macro-F1 MLP  0.475  0.423  0.510             NaN       NaN
+26                         P1 macro-F1 GCN  0.438  0.385  0.473             NaN       NaN
+27                      P1 macro-F1 ResGCN  0.472  0.428  0.502             NaN       NaN
+28                         P1 macro-F1 GAT  0.444  0.388  0.479             NaN       NaN
+29  P1 macro-F1 difference GCN-Persistence  0.009 -0.038  0.053           0.672       NaN
+30   P1 macro-F1 difference LR-Persistence  0.041 -0.006  0.084           0.958       NaN
+[E10 done in 11.4s]

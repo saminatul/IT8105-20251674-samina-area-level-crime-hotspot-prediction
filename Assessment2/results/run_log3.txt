@@ -1,0 +1,154 @@
+
+===== E1
+best {'LR': {'C': 10}, 'SVM': {'C': 10, 'gamma': 0.01}, 'RF': {'max_depth': None, 'min_samples_leaf': 1}, 'MLP': {'hidden': 128, 'dropout': 0.3, 'lr': 0.01, 'wd': 0.005, 'layers': 2}, 'GCN': {'hidden': 64, 'dropout': 0.3, 'lr': 0.01, 'wd': 0.0005, 'layers': 2}, 'ResGCN': {'hidden': 128, 'dropout': 0.3, 'lr': 0.003, 'wd': 0.005, 'layers': 2}, 'GAT': {'hidden': 64, 'dropout': 0.3, 'lr': 0.01, 'wd': 0.0005, 'layers': 2}, 'KDE': {'bandwidth_m': 800}}
+                                     topk_macro_f1  ... thr_macro_f1
+                                              mean  ...         mean
+model                                               ...             
+Majority (all low)                             NaN  ...       0.4413
+Persistence (lagged counts)                 0.9321  ...          NaN
+KDE (victimisation, prior 3 periods)        0.9321  ...          NaN
+LR                                          0.9515  ...       0.9073
+SVM                                         0.9321  ...       0.9249
+RF                                          0.9515  ...       0.9445
+MLP                                         0.9525  ...       0.9379
+GCN                                         0.8603  ...       0.8663
+ResGCN                                      0.9292  ...       0.9349
+GAT                                         0.8642  ...       0.8674
+
+[10 rows x 6 columns]
+[E1 done in 143.5s]
+
+===== E3
+                                             accuracy         ...  f1_c3       
+                                                 mean    std  ...   mean    std
+model                                                         ...              
+Majority class                                  0.366    NaN  ...  0.000    NaN
+Persistence (dominant type, prior 3 periods)    0.604    NaN  ...  0.200    NaN
+KDE (per-category density)                      0.640    NaN  ...  0.217    NaN
+LR                                              0.611    NaN  ...  0.324    NaN
+SVM                                             0.564    NaN  ...  0.344    NaN
+RF                                              0.629  0.007  ...  0.418  0.012
+MLP                                             0.593  0.013  ...  0.363  0.041
+GCN                                             0.547  0.016  ...  0.343  0.046
+ResGCN                                          0.567  0.021  ...  0.353  0.041
+GAT                                             0.550  0.012  ...  0.331  0.015
+
+[10 rows x 16 columns]
+[E3 done in 87.3s]
+
+===== E10
+                                  quantity  point     lo     hi  share_positive  n_blocks
+0                           AP Persistence  0.973  0.938  0.994             NaN      26.0
+1                                   AP KDE  0.970  0.934  0.993             NaN      26.0
+2                                    AP LR  0.983  0.954  0.997             NaN      26.0
+3                                   AP SVM  0.974  0.939  0.993             NaN      26.0
+4                                    AP RF  0.989  0.968  0.999             NaN      26.0
+5                                   AP MLP  0.981  0.954  0.996             NaN      26.0
+6                                   AP GCN  0.893  0.814  0.944             NaN      26.0
+7                                AP ResGCN  0.976  0.954  0.992             NaN      26.0
+8                                   AP GAT  0.881  0.803  0.950             NaN      26.0
+9                     AP difference GCN-LR -0.090 -0.152 -0.046           0.000      26.0
+10           AP difference GCN-Persistence -0.081 -0.151 -0.032           0.002      26.0
+11            AP difference LR-Persistence  0.009 -0.008  0.031           0.864      26.0
+12                   AP difference GCN-MLP -0.089 -0.154 -0.046           0.000      26.0
+13                AP difference ResGCN-MLP -0.004 -0.013  0.008           0.169      26.0
+14                AP difference ResGCN-GCN  0.085  0.039  0.154           1.000      26.0
+15                     AP difference RF-LR  0.006 -0.002  0.021           0.927      26.0
+16                 AP difference ResGCN-LR -0.005 -0.018  0.012           0.218      26.0
+17                   AP difference GAT-MLP -0.098 -0.163 -0.039           0.000      26.0
+18                   AP difference GAT-GCN -0.009 -0.059  0.056           0.328      26.0
+19            AP GCN (naive iid bootstrap)  0.893  0.831  0.944             NaN      26.0
+20                 P1 macro-F1 Persistence  0.404  0.343  0.456             NaN       NaN
+21                         P1 macro-F1 KDE  0.426  0.353  0.485             NaN       NaN
+22                          P1 macro-F1 LR  0.498  0.423  0.556             NaN       NaN
+23                         P1 macro-F1 SVM  0.467  0.399  0.517             NaN       NaN
+24                          P1 macro-F1 RF  0.461  0.395  0.509             NaN       NaN
+25                         P1 macro-F1 MLP  0.480  0.415  0.527             NaN       NaN
+26                         P1 macro-F1 GCN  0.448  0.379  0.492             NaN       NaN
+27                      P1 macro-F1 ResGCN  0.478  0.410  0.524             NaN       NaN
+28                         P1 macro-F1 GAT  0.452  0.372  0.501             NaN       NaN
+29  P1 macro-F1 difference GCN-Persistence  0.038 -0.037  0.103           0.852       NaN
+30   P1 macro-F1 difference LR-Persistence  0.092  0.006  0.167           0.983       NaN
+[E10 done in 11.1s]
+
+===== E16
+           task         comparison  observed_diff   p_raw  p_holm
+0         P2 AP   LR - Persistence         0.0088  0.3362  1.0000
+1         P2 AP            RF - LR         0.0053  0.2484  1.0000
+2         P2 AP           MLP - LR        -0.0012  0.7966  1.0000
+3         P2 AP           SVM - LR        -0.0084  0.1757  1.0000
+4         P2 AP          GCN - MLP        -0.0880  0.0010  0.0100
+5         P2 AP       ResGCN - MLP        -0.0056  0.3524  1.0000
+6         P2 AP       ResGCN - GCN         0.0824  0.0010  0.0100
+7         P2 AP          GAT - MLP        -0.0997  0.0040  0.0320
+8         P2 AP          GAT - GCN        -0.0117  0.6946  1.0000
+9         P2 AP  KDE - Persistence        -0.0023  0.7468  1.0000
+10  P1 macro-F1   LR - Persistence         0.0946  0.0765  0.5266
+11  P1 macro-F1          GCN - SVM        -0.0189  0.4189  1.0000
+12  P1 macro-F1          GCN - MLP        -0.0315  0.2022  1.0000
+13  P1 macro-F1           LR - GCN         0.0497  0.0752  0.5266
+14  P1 macro-F1       ResGCN - GCN         0.0293  0.2239  1.0000
+15  P1 macro-F1          GAT - GCN         0.0039  0.8218  1.0000
+16  P1 macro-F1           MLP - LR        -0.0181  0.5591  1.0000
+[E16 done in 36.6s]
+
+===== E15
+                                  variant  p2_LR_ap  p2_LR_topk_macro_f1   LR_C  p1_LR_macro_f1  p2_MLP_ap  p2_ResGCN_ap  p2_GCN_ap  p1_MLP_macro_f1
+0                                    main    0.9830               0.9515  10.00          0.4981     0.9805        0.9750     0.8957           0.4768
+1                                     raw    0.9929               0.9515   0.01          0.4461     0.9834        0.9613     0.8750           0.4214
+2                                     std    0.9817               0.9515   1.00          0.4757     0.9765        0.9740     0.9035           0.4621
+3                                     log    0.9847               0.9418   1.00          0.4821     0.9788        0.9691     0.8350           0.4098
+4                                  robust    0.9817               0.9515  10.00          0.4978     0.9807        0.9740     0.8881           0.4628
+5  drop 17 low-volume cells from training    0.9818               0.9515    NaN             NaN     0.9726        0.9730     0.7815              NaN
+[E15 done in 62.1s]
+
+===== E17
+                          features   model  val_macro_f1  test_macro_f1  test_macro_f1_sd  test_acc  test_kappa
+0               base (23 features)      LR         0.492          0.498             0.000     0.611       0.425
+1               base (23 features)      RF         0.486          0.461             0.000     0.627       0.435
+2               base (23 features)     MLP         0.520          0.477             0.020     0.587       0.412
+3               base (23 features)  ResGCN         0.490          0.462             0.026     0.566       0.379
+4  extended (+18 history features)      LR         0.466          0.496             0.000     0.617       0.436
+5  extended (+18 history features)      RF         0.518          0.518             0.000     0.620       0.450
+6  extended (+18 history features)     MLP         0.521          0.434             0.032     0.561       0.361
+7  extended (+18 history features)  ResGCN         0.514          0.433             0.014     0.547       0.343
+[E17 done in 82.5s]
+
+===== E18
+                          model     MAE    RMSE     R2  spearman                                                                  config
+0     Persistence (last period)   6.592   9.539  0.939     0.973                                                                        
+1   Persistence (3-period mean)   5.990   8.615  0.950     0.979                                                                        
+2     Poisson GLM (tuned alpha)   5.945   8.938  0.946     0.979                                                                 alpha=1
+3     MLP (Poisson loss, tuned)   6.273   9.369  0.941     0.977  {"hidden": 128, "dropout": 0.3, "lr": 0.01, "wd": 0.0005, "layers": 2}
+4     GCN (Poisson loss, tuned)  11.473  16.890  0.808     0.912   {"hidden": 128, "dropout": 0.3, "lr": 0.01, "wd": 0.005, "layers": 2}
+5  ResGCN (Poisson loss, tuned)   7.236  10.918  0.920     0.972    {"hidden": 64, "dropout": 0.5, "lr": 0.01, "wd": 0.005, "layers": 2}
+6     GAT (Poisson loss, tuned)  16.509  25.777  0.552     0.865   {"hidden": 32, "dropout": 0.3, "lr": 0.01, "wd": 0.0005, "layers": 2}
+[E18 done in 178.1s]
+
+===== E19
+{
+ "morans_I_mean": 0.5413650272370415,
+ "morans_I_test": 0.540467684367262,
+ "temporal_lag1_corr_log_counts": 0.963888530620334,
+ "n_cells": 157,
+ "n_test_periods": 2,
+ "n_test_rows": 314,
+ "n_eff_space": 46.71553425138857,
+ "n_eff_time_per_cell": 1.0,
+ "n_eff_total_approx": 46.71553425138857,
+ "n_incidents": 228595,
+ "morans_I_high_label_test": 0.47686842332240825,
+ "centroid_graph_undirected_edges": 386,
+ "centroid_graph_mean_degree": 4.917197452229299,
+ "centroid_graph_isolated": 0,
+ "centroid_edge_len_km_min": 0.681460618410036,
+ "centroid_edge_len_km_max": 2.997829309620785,
+ "centroid_edge_len_km_cv": 0.2152605264472284,
+ "centroid_GCN_p2_ap": 0.7703491719114951,
+ "centroid_GCN_p1_macro_f1": 0.4375183344529695,
+ "centroid_ResGCN_p2_ap": 0.9725525450583739,
+ "centroid_ResGCN_p1_macro_f1": 0.468814692732621,
+ "centroid_GAT_p2_ap": 0.800019014023847,
+ "centroid_GAT_p1_macro_f1": 0.43421457833491095
+}
+[E19 done in 37.3s]

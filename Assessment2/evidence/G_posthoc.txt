@@ -1,0 +1,109 @@
+
+===== E14
+                       feature  lr_std_coef  lr_perm_ap_drop  rf_perm_ap_drop  rf_perm_sd
+6              VICTIM_MEAN_ALL       5.6384           0.2666           0.0569      0.0268
+3                     TOTAL_L1       4.1561           0.1423           0.0071      0.0109
+7               TOTAL_MEAN_ALL       3.9937           0.1294           0.0065      0.0114
+8                 VICTIM_SHARE       3.9909           0.2136           0.0072      0.0046
+18              SHARE3_ASSAULT      -2.6765           0.0351          -0.0007      0.0034
+16              SHARE3_BATTERY      -2.3068           0.0303           0.0058      0.0045
+0                    VICTIM_L1       1.4239           0.0265           0.0100      0.0126
+19  SHARE3_MOTOR_VEHICLE_THEFT       1.3260           0.0230           0.0028      0.0028
+9               DOMESTIC_SHARE       0.9100           0.0257           0.0027      0.0026
+14                         LON       0.8034           0.0053           0.0004      0.0040
+1                    VICTIM_L2      -0.7710           0.0053           0.0048      0.0067
+4                     TOTAL_L2       0.7055           0.0055           0.0064      0.0076
+13                         LAT       0.5819           0.0088           0.0068      0.0063
+20        SHARE3_OTHER_OFFENSE       0.5639           0.0045           0.0021      0.0028
+22             SHARE3_BURGLARY      -0.5238           0.0074           0.0012      0.0037
+10                ARREST_SHARE       0.4872           0.0100           0.0060      0.0061
+2                    VICTIM_L3       0.2072           0.0007           0.0204      0.0136
+5                     TOTAL_L3      -0.1771           0.0006           0.0007      0.0103
+12                VICTIM_TREND      -0.1632           0.0002          -0.0001      0.0007
+11                 NIGHT_SHARE      -0.1379           0.0003           0.0056      0.0045
+15                SHARE3_THEFT      -0.1014           0.0004           0.0012      0.0019
+17      SHARE3_CRIMINAL_DAMAGE       0.0905          -0.0002          -0.0004      0.0018
+21   SHARE3_DECEPTIVE_PRACTICE       0.0567          -0.0003           0.0015      0.0023
+[E14 done in 11.9s]
+
+===== E15
+                                  variant  p2_LR_val_ap  p2_LR_ap  p2_LR_topk_macro_f1   LR_C  p1_LR_val_macro_f1  p1_LR_macro_f1  p2_MLP_ap  p2_ResGCN_ap  p2_GCN_ap  p1_MLP_macro_f1
+0                                    main        0.9685    0.9830               0.9515  10.00              0.4916          0.4981     0.9805        0.9750     0.8957           0.4768
+1                                     raw        0.9586    0.9929               0.9515   0.01              0.4537          0.4461     0.9834        0.9613     0.8750           0.4214
+2                                     std        0.9603    0.9817               0.9515   1.00              0.4728          0.4757     0.9765        0.9740     0.9035           0.4621
+3                                     log        0.9581    0.9847               0.9418   1.00              0.4857          0.4821     0.9788        0.9691     0.8350           0.4098
+4                                  robust        0.9704    0.9817               0.9515  10.00              0.4896          0.4978     0.9807        0.9740     0.8881           0.4628
+5  drop 17 low-volume cells from training           NaN    0.9818               0.9515    NaN                 NaN             NaN     0.9726        0.9730     0.7815              NaN
+[E15 done in 49.1s]
+
+===== E16
+           task         comparison  observed_diff   p_raw  p_holm
+0         P2 AP   LR - Persistence         0.0088  0.3362  1.0000
+1         P2 AP            RF - LR         0.0053  0.2484  1.0000
+2         P2 AP           MLP - LR        -0.0012  0.7966  1.0000
+3         P2 AP           SVM - LR        -0.0084  0.1757  1.0000
+4         P2 AP          GCN - MLP        -0.0880  0.0010  0.0100
+5         P2 AP       ResGCN - MLP        -0.0056  0.3524  1.0000
+6         P2 AP       ResGCN - GCN         0.0824  0.0010  0.0100
+7         P2 AP          GAT - MLP        -0.0997  0.0040  0.0320
+8         P2 AP          GAT - GCN        -0.0117  0.6946  1.0000
+9         P2 AP  KDE - Persistence        -0.0023  0.7468  1.0000
+10  P1 macro-F1   LR - Persistence         0.0946  0.0765  0.5266
+11  P1 macro-F1          GCN - SVM        -0.0189  0.4189  1.0000
+12  P1 macro-F1          GCN - MLP        -0.0315  0.2022  1.0000
+13  P1 macro-F1           LR - GCN         0.0497  0.0752  0.5266
+14  P1 macro-F1       ResGCN - GCN         0.0293  0.2239  1.0000
+15  P1 macro-F1          GAT - GCN         0.0039  0.8218  1.0000
+16  P1 macro-F1           MLP - LR        -0.0181  0.5591  1.0000
+[E16 done in 33.7s]
+
+===== E17
+                          features   model  val_macro_f1  test_macro_f1  test_macro_f1_sd  test_acc  test_kappa
+0               base (23 features)      LR         0.492          0.498             0.000     0.611       0.425
+1               base (23 features)      RF         0.486          0.461             0.000     0.627       0.435
+2               base (23 features)     MLP         0.520          0.477             0.020     0.587       0.412
+3               base (23 features)  ResGCN         0.490          0.462             0.026     0.566       0.379
+4  extended (+18 history features)      LR         0.466          0.496             0.000     0.617       0.436
+5  extended (+18 history features)      RF         0.518          0.518             0.000     0.620       0.450
+6  extended (+18 history features)     MLP         0.521          0.434             0.032     0.561       0.361
+7  extended (+18 history features)  ResGCN         0.514          0.433             0.014     0.547       0.343
+[E17 done in 64.7s]
+
+===== E18
+                          model     MAE    RMSE     R2  spearman                                                                  config
+0     Persistence (last period)   6.592   9.539  0.939     0.973                                                                        
+1   Persistence (3-period mean)   5.990   8.615  0.950     0.979                                                                        
+2     Poisson GLM (tuned alpha)   5.945   8.938  0.946     0.979                                                                 alpha=1
+3     MLP (Poisson loss, tuned)   6.273   9.369  0.941     0.977  {"hidden": 128, "dropout": 0.3, "lr": 0.01, "wd": 0.0005, "layers": 2}
+4     GCN (Poisson loss, tuned)  11.473  16.890  0.808     0.912   {"hidden": 128, "dropout": 0.3, "lr": 0.01, "wd": 0.005, "layers": 2}
+5  ResGCN (Poisson loss, tuned)   7.236  10.918  0.920     0.972    {"hidden": 64, "dropout": 0.5, "lr": 0.01, "wd": 0.005, "layers": 2}
+6     GAT (Poisson loss, tuned)  16.509  25.777  0.552     0.865   {"hidden": 32, "dropout": 0.3, "lr": 0.01, "wd": 0.0005, "layers": 2}
+[E18 done in 135.3s]
+
+===== E19
+{
+ "morans_I_mean": 0.5413650272370415,
+ "morans_I_test": 0.540467684367262,
+ "temporal_lag1_corr_log_counts": 0.963888530620334,
+ "n_cells": 157,
+ "n_test_periods": 2,
+ "n_test_rows": 314,
+ "n_eff_space": 46.71553425138857,
+ "n_eff_time_per_cell": 1.0,
+ "n_eff_total_approx": 46.71553425138857,
+ "n_incidents": 228595,
+ "morans_I_high_label_test": 0.47686842332240825,
+ "centroid_graph_undirected_edges": 386,
+ "centroid_graph_mean_degree": 4.917197452229299,
+ "centroid_graph_isolated": 0,
+ "centroid_edge_len_km_min": 0.681460618410036,
+ "centroid_edge_len_km_max": 2.997829309620785,
+ "centroid_edge_len_km_cv": 0.2152605264472284,
+ "centroid_GCN_p2_ap": 0.7703491719114951,
+ "centroid_GCN_p1_macro_f1": 0.4375183344529695,
+ "centroid_ResGCN_p2_ap": 0.9725525450583739,
+ "centroid_ResGCN_p1_macro_f1": 0.468814692732621,
+ "centroid_GAT_p2_ap": 0.800019014023847,
+ "centroid_GAT_p1_macro_f1": 0.43421457833491095
+}
+[E19 done in 26.3s]

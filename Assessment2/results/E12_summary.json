@@ -1,0 +1,16 @@
+{
+  "selected": {
+    "eps_m": 300.0,
+    "min_samples": 60.0,
+    "clusters": 12.0,
+    "noise_share": 0.895730660612437,
+    "flagged_cells": 6.0,
+    "area_share": 0.03821656050955414,
+    "test_hit_rate": 0.07037373154030195,
+    "PAI": 1.8414459753045678,
+    "silhouette_clustered": 0.633515704072335,
+    "seconds": 0.027764666999985366,
+    "val_PAI_(fit_5-7,eval_9-10)": 2.6014721517952073
+  },
+  "stability_jaccard_windows_2-4_vs_5-7": 0.5
+}

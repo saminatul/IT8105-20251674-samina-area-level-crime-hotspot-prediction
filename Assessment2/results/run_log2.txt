@@ -1,0 +1,154 @@
+
+===== E7
+          experiment  setting        model  prevalence     ap    auc  n_cells  gcn_train_s
+0   label percentile       70  Persistence       0.303  0.980  0.991      NaN          NaN
+1   label percentile       70           LR       0.303  0.983  0.992      NaN          NaN
+2   label percentile       70          GCN       0.303  0.921  0.965      NaN          NaN
+3   label percentile       70       ResGCN       0.303  0.978  0.991      NaN          NaN
+4   label percentile       80  Persistence       0.210  0.973  0.993      NaN          NaN
+5   label percentile       80           LR       0.210  0.983  0.996      NaN          NaN
+6   label percentile       80          GCN       0.210  0.896  0.962      NaN          NaN
+7   label percentile       80       ResGCN       0.210  0.975  0.993      NaN          NaN
+8   label percentile       90  Persistence       0.102  0.930  0.991      NaN          NaN
+9   label percentile       90           LR       0.102  0.906  0.985      NaN          NaN
+10  label percentile       90          GCN       0.102  0.809  0.968      NaN          NaN
+11  label percentile       90       ResGCN       0.102  0.886  0.981      NaN          NaN
+12     grid size (m)     1500  Persistence       0.204  0.956  0.986    312.0          NaN
+13     grid size (m)     1500           LR       0.204  0.963  0.989    312.0          NaN
+14     grid size (m)     1500          GCN       0.204  0.841  0.948    312.0        0.898
+15     grid size (m)     1500       ResGCN       0.204  0.957  0.987    312.0          NaN
+16     grid size (m)     2200  Persistence       0.210  0.973  0.993    157.0          NaN
+17     grid size (m)     2200           LR       0.210  0.983  0.996    157.0          NaN
+18     grid size (m)     2200          GCN       0.210  0.896  0.962    157.0        0.515
+19     grid size (m)     2200       ResGCN       0.210  0.975  0.993    157.0          NaN
+20     grid size (m)     3000  Persistence       0.200  0.968  0.992     95.0          NaN
+21     grid size (m)     3000           LR       0.200  0.965  0.991     95.0          NaN
+22     grid size (m)     3000          GCN       0.200  0.843  0.955     95.0        0.339
+23     grid size (m)     3000       ResGCN       0.200  0.968  0.992     95.0          NaN
+[E7 done in 47.1s]
+
+===== E8
+    test_period  n_train_periods task        model     ap  topk_macro_f1    auc  ap_sd  macro_f1
+0             8                4   P2       ResGCN  0.935          0.896  0.977  0.004       NaN
+1             8                4   P2  Persistence  0.938          0.915  0.979    NaN       NaN
+2             8                4   P2          KDE  0.909          0.896  0.972    NaN       NaN
+3             8                4   P2           LR  0.944          0.934  0.980    NaN       NaN
+4             8                4   P2          GCN  0.854          0.805  0.948  0.008       NaN
+5             8                4   P1           LR    NaN            NaN    NaN    NaN     0.425
+6             8                4   P1  Persistence    NaN            NaN    NaN    NaN     0.458
+7             8                4   P1          GCN    NaN            NaN    NaN    NaN     0.431
+8             9                5   P2       ResGCN  0.965          0.917  0.987  0.002       NaN
+9             9                5   P2  Persistence  0.965          0.951  0.989    NaN       NaN
+10            9                5   P2          KDE  0.944          0.893  0.985    NaN       NaN
+11            9                5   P2           LR  0.962          0.932  0.987    NaN       NaN
+12            9                5   P2          GCN  0.860          0.886  0.965  0.037       NaN
+13            9                5   P1           LR    NaN            NaN    NaN    NaN     0.428
+14            9                5   P1  Persistence    NaN            NaN    NaN    NaN     0.446
+15            9                5   P1          GCN    NaN            NaN    NaN    NaN     0.391
+16           10                6   P2       ResGCN  0.941          0.924  0.979  0.005       NaN
+17           10                6   P2  Persistence  0.969          0.951  0.991    NaN       NaN
+18           10                6   P2          KDE  0.932          0.913  0.982    NaN       NaN
+19           10                6   P2           LR  0.960          0.893  0.989    NaN       NaN
+20           10                6   P2          GCN  0.882          0.870  0.948  0.001       NaN
+21           10                6   P1           LR    NaN            NaN    NaN    NaN     0.567
+22           10                6   P1  Persistence    NaN            NaN    NaN    NaN     0.390
+23           10                6   P1          GCN    NaN            NaN    NaN    NaN     0.456
+24           11                7   P2       ResGCN  0.965          0.913  0.989  0.000       NaN
+25           11                7   P2  Persistence  0.970          0.913  0.992    NaN       NaN
+26           11                7   P2          KDE  0.952          0.893  0.987    NaN       NaN
+27           11                7   P2           LR  0.977          0.932  0.994    NaN       NaN
+28           11                7   P2          GCN  0.885          0.862  0.957  0.006       NaN
+29           11                7   P1           LR    NaN            NaN    NaN    NaN     0.490
+30           11                7   P1  Persistence    NaN            NaN    NaN    NaN     0.425
+31           11                7   P1          GCN    NaN            NaN    NaN    NaN     0.444
+32           12                8   P2       ResGCN  0.987          0.951  0.996  0.001       NaN
+33           12                8   P2  Persistence  0.977          0.951  0.994    NaN       NaN
+34           12                8   P2          KDE  0.991          0.971  0.998    NaN       NaN
+35           12                8   P2           LR  0.991          0.951  0.997    NaN       NaN
+36           12                8   P2          GCN  0.949          0.913  0.985  0.006       NaN
+37           12                8   P1           LR    NaN            NaN    NaN    NaN     0.460
+38           12                8   P1  Persistence    NaN            NaN    NaN    NaN     0.382
+39           12                8   P1          GCN    NaN            NaN    NaN    NaN     0.472
+[E8 done in 34.1s]
+
+===== E9
+   block  n_cells  n_test  n_pos  persistence_ap  lr_ap  mlp_ap  gcn_ap  resgcn_ap  lr_auc  gcn_auc
+0      0       29      58     10           0.973  1.000   0.994   0.953      0.983   1.000    0.989
+1      1       26      52     10           0.933  0.981   0.914   0.634      0.938   0.995    0.780
+2      2       37      74     13           0.995  0.989   0.958   0.828      0.936   0.997    0.924
+3      3       30      60      2           1.000  1.000   1.000   0.667      1.000   1.000    0.986
+4      4       35      70     31           0.983  0.984   0.986   0.863      0.974   0.988    0.865
+[E9 done in 40.3s]
+
+===== E10
+                                  quantity  point     lo     hi  share_positive  n_blocks
+0                           AP Persistence  0.973  0.938  0.994             NaN      26.0
+1                                   AP KDE  0.970  0.934  0.993             NaN      26.0
+2                                    AP LR  0.983  0.954  0.997             NaN      26.0
+3                                   AP SVM  0.974  0.939  0.993             NaN      26.0
+4                                    AP RF  0.989  0.968  0.999             NaN      26.0
+5                                   AP MLP  0.981  0.954  0.996             NaN      26.0
+6                                   AP GCN  0.893  0.814  0.944             NaN      26.0
+7                                AP ResGCN  0.976  0.954  0.992             NaN      26.0
+8                     AP difference GCN-LR -0.090 -0.152 -0.046           0.000      26.0
+9            AP difference GCN-Persistence -0.081 -0.151 -0.032           0.002      26.0
+10            AP difference LR-Persistence  0.009 -0.008  0.031           0.864      26.0
+11                   AP difference GCN-MLP -0.089 -0.154 -0.046           0.000      26.0
+12                AP difference ResGCN-MLP -0.004 -0.013  0.008           0.169      26.0
+13                AP difference ResGCN-GCN  0.085  0.039  0.154           1.000      26.0
+14                     AP difference RF-LR  0.006 -0.002  0.021           0.927      26.0
+15                 AP difference ResGCN-LR -0.005 -0.018  0.012           0.218      26.0
+16            AP GCN (naive iid bootstrap)  0.893  0.831  0.944             NaN      26.0
+17                 P1 macro-F1 Persistence  0.404  0.343  0.456             NaN       NaN
+18                         P1 macro-F1 KDE  0.426  0.353  0.485             NaN       NaN
+19                          P1 macro-F1 LR  0.498  0.423  0.556             NaN       NaN
+20                         P1 macro-F1 SVM  0.467  0.399  0.517             NaN       NaN
+21                          P1 macro-F1 RF  0.461  0.395  0.509             NaN       NaN
+22                         P1 macro-F1 MLP  0.480  0.415  0.527             NaN       NaN
+23                         P1 macro-F1 GCN  0.448  0.379  0.492             NaN       NaN
+24                      P1 macro-F1 ResGCN  0.478  0.410  0.524             NaN       NaN
+25  P1 macro-F1 difference GCN-Persistence  0.038 -0.037  0.103           0.852       NaN
+26   P1 macro-F1 difference LR-Persistence  0.092  0.006  0.167           0.983       NaN
+[E10 done in 9.4s]
+
+===== E11
+                         model     MAE    RMSE     R2  spearman  poisson_alpha
+0    Persistence (last period)   6.592   9.539  0.939     0.973              1
+1  Persistence (3-period mean)   5.990   8.615  0.950     0.979              1
+2                  Poisson GLM   5.945   8.938  0.946     0.979              1
+3           GCN (Poisson loss)  11.548  16.798  0.810     0.912              1
+4           MLP (Poisson loss)   6.700   9.978  0.933     0.977              1
+[E11 done in 3.1s]
+
+===== E12
+    eps_m  min_samples  clusters  noise_share  flagged_cells  area_share  test_hit_rate    PAI  silhouette_clustered  seconds  val_PAI_(fit_5-7,eval_9-10)
+0     100           30         3        0.992              0       0.000          0.000    NaN                 0.963    0.020                        0.000
+1     100           60         0        1.000              0       0.000          0.000    NaN                   NaN    0.018                        0.000
+2     100          100         0        1.000              0       0.000          0.000    NaN                   NaN    0.019                        0.000
+3     150           30        16        0.957              0       0.000          0.000    NaN                 0.728    0.020                        1.740
+4     150           60         0        1.000              0       0.000          0.000    NaN                   NaN    0.020                        0.000
+5     150          100         0        1.000              0       0.000          0.000    NaN                   NaN    0.020                        0.000
+6     200           30        27        0.891              5       0.032          0.066  2.088                 0.715    0.022                        2.507
+7     200           60         4        0.983              0       0.000          0.000    NaN                 0.921    0.022                        0.000
+8     200          100         0        1.000              0       0.000          0.000    NaN                   NaN    0.022                        0.000
+9     300           30        66        0.569             36       0.229          0.481  2.098                 0.353    0.027                        2.100
+10    300           60        12        0.896              6       0.038          0.070  1.841                 0.634    0.026                        2.601
+11    300          100         2        0.987              0       0.000          0.000    NaN                 0.680    0.026                        0.000
+                          method  area_share  hit_rate    PAI
+0                    Persistence       0.204     0.526  2.579
+1                            KDE       0.204     0.519  2.547
+2                             LR       0.204     0.528  2.591
+3                             RF       0.204     0.529  2.593
+4                            GCN       0.204     0.483  2.372
+5                         ResGCN       0.204     0.523  2.564
+6  DBSCAN (eps=300 m, minPts=60)       0.038     0.070  1.841
+{'selected': {'eps_m': 300.0, 'min_samples': 60.0, 'clusters': 12.0, 'noise_share': 0.895730660612437, 'flagged_cells': 6.0, 'area_share': 0.03821656050955414, 'test_hit_rate': 0.07037373154030195, 'PAI': 1.8414459753045678, 'silhouette_clustered': 0.633515704072335, 'seconds': 0.026234582999990153, 'val_PAI_(fit_5-7,eval_9-10)': 2.6014721517952073}, 'stability_jaccard_windows_2-4_vs_5-7': 0.5}
+[E12 done in 1.0s]
+
+===== curves
+[curves done in 1.2s]
+
+===== E13
+{'python': '3.9.6', 'platform': 'macOS-26.2-arm64-arm-64bit', 'processor': 'Apple M5 (10 cores), 16 GB RAM', 'numpy': '2.0.2', 'pandas': '2.3.3', 'sklearn': '1.6.1', 'torch': '2.8.0', 'torch_geometric': '2.6.1', 'seeds': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 'peak_rss_mb': 941.621248, 'periods': {0: ['2025-08-24', '2025-09-20', 18683], 1: ['2025-09-21', '2025-10-18', 18960], 2: ['2025-10-19', '2025-11-15', 18236], 3: ['2025-11-16', '2025-12-13', 16157], 4: ['2025-12-14', '2026-01-10', 16164], 5: ['2026-01-11', '2026-02-07', 15057], 6: ['2026-02-08', '2026-03-07', 16488], 7: ['2026-03-08', '2026-04-04', 17576], 8: ['2026-04-05', '2026-05-02', 17722], 9: ['2026-05-03', '2026-05-30', 18970], 10: ['2026-05-31', '2026-06-27', 18399], 11: ['2026-06-28', '2026-07-25', 18938], 12: ['2026-07-26', '2026-08-22', 17223], 13: ['2026-08-23', '2026-08-23', 22]}, 'split': {'train': [3, 4, 5, 6, 7, 8], 'val': [9, 10], 'test': [11, 12]}}
+[E13 done in 0.1s]
+python3 -u run_experiments.py E7 E8 E9 E10 E11 E12 curves E13  182.10s user 23.76s system 146% cpu 2:20.17 total
