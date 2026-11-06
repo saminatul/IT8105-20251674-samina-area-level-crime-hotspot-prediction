@@ -28,6 +28,7 @@
 \makeatletter\g@addto@macro\UrlBreaks{\do\_\do\-}\makeatother
 \usepackage[hidelinks]{hyperref}
 \usepackage{fvextra}
+\usepackage{fancyhdr}
 
 \graphicspath{{figures/}}
 \setstretch{1.2}
@@ -49,32 +50,46 @@
 \titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \setlength{\emergencystretch}{3em}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Samina Tuladhar}
+  \fancyhead[R]{Machine Learning Proposal}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{Samina Tuladhar}
+  \fancyhead[R]{Machine Learning Proposal}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
 
 \begin{document}
 
 % ----------------------------------------------------------------- title page
 \hypersetup{pageanchor=false}
 \begin{titlepage}
+\thispagestyle{empty}
 \centering
-\vspace*{1.5cm}
-{\Large\bfseries IT8105 Machine Learning\par}
-\vspace{0.4cm}
-{\large\bfseries Final Report\par}
-\vspace{2.5cm}
-{\LARGE\bfseries Area-Level Crime Hotspot and\\[4pt] High-Victimisation Risk Prediction\par}
+\vspace*{0.3cm}
+\includegraphics[width=6.2cm]{whitecliffe_logo.png}\par
+\vspace{1.8cm}
+{\sffamily\bfseries\Large IT8105 Machine Learning\par}
+\vspace{0.35cm}
+{\sffamily\bfseries\Large Final Report\par}
+\vspace{2.7cm}
+{\LARGE\bfseries Scenario-based Evaluative Report of Machine Learning Solution\par}
 \vspace{2.5cm}
 {\large
-\begin{tabular}{lcl}
-Student Name & : & Samina Tuladhar\\
-Student ID   & : & 20251674\\
-Lecturer     & : & Dr Joseph Dang\\
+\begin{tabular}{@{}l@{\hspace{1.6em}:\hspace{1.6em}}l@{}}
+Student Name & Samina Tuladhar\\
+Student ID   & 20251674\\
+Lecturer     & Dr Joseph Dang\\
 \end{tabular}\par}
 \vfill
-{\large A document submitted to Whitecliffe in partial fulfilment of the requirements for the course of IT8105 Machine Learning\par}
-\vspace{1cm}
-{\large Whitecliffe\\ 2026\par}
-\vspace{1cm}
-{\large Submission Date: [insert submission date]\par}
+{\large\bfseries Submission Date: 6\textsuperscript{th} November 2026\par}
+\vspace{1.5cm}
 \end{titlepage}
 
 \hypersetup{pageanchor=true}
@@ -83,8 +98,7 @@ Lecturer     & : & Dr Joseph Dang\\
 % ----------------------------------------------------------------- abstract
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-Recorded crime in the City of Chicago is highly clustered, with the busiest 20\% of 2.2 km grid cells accounting for approximately half of all recorded incidents. This study evaluates whether an area-level forecasting approach using a Spatial Graph Convolutional Network (GCN) can achieve more accurate predictions for the two forecasting tasks: (1) dominant crime type during the following 28 days and (2) whether a cell is among the top 20\% for recorded victimisation-related incidents, versus persistence, kernel density, logistic regression (LR), SVM, random forest, MLP, and graph-attention baselines. Features use only past periods; models are tuned using validation periods and tested in chronological order using ten seeds, spatial-block bootstrap intervals, and permutation testing. A review found that the label for Phase 1 of the Assessment 1 pilot was present in its features, and LR matched the pilot's Phase 2 result. For one year (228,595 rows, 157 cells), LR achieved an average precision of 0.983 and macro-F1 of 0.951 for cells with high victimisation, exceeding the pre-registered criterion of 0.70, but persistence achieved 0.973 and no learned model performed significantly better than persistence. The GCN reached 0.885 and a residual variant 0.975; neither made use of neighbouring cells productively, and a three-year replication (732,017 rows, six test periods) yielded the same ranking. Predicting the dominant crime type remained difficult (highest macro-F1 around 0.50). A tested API prototype reproduces the offline results exactly. A transparent model with a human-in-the-loop approach is recommended.
-
+Recorded crime in the City of Chicago is highly clustered, with the busiest 20\% of 2.2 km grid cells accounting for approximately half of all recorded incidents. This study evaluates whether an area-level forecasting approach using a Spatial Graph Convolutional Network (GCN) can achieve more accurate predictions for the two forecasting tasks: (1) dominant crime type during the following 28 days and (2) whether a cell is among the top 20\% for recorded victimisation-related incidents, versus persistence, kernel density, logistic regression (LR), SVM, random forest, MLP, and graph-attention baselines. Features use only past periods; models are tuned using validation periods and tested in chronological order using ten seeds, spatial-block bootstrap intervals, and permutation testing. A review found that the label for Phase 1 of the Assessment 1 pilot was present in its features, and LR matched the pilot's Phase 2 result. For one year (228,595 rows, 157 cells), LR achieved an average precision of 0.983 and macro-F1 of 0.951 for cells with high victimisation, exceeding the pre-registered criterion of 0.70, but persistence achieved 0.973 and no learned model performed significantly better than persistence. The GCN reached 0.885 and a residual variant 0.975; neither made use of neighbouring cells productively, and a three-year replication (732,017 rows, six test periods) yielded the same ranking. The prediction of the most prevalent crime was a challenge (best macro-F1 at 0.50). The results using an API prototype are identical to the off-line version. A transparent method, with a human in the loop, is proposed.
 
 \tableofcontents
 \listoffigures
@@ -146,14 +160,14 @@ Only graph-based models use the term neighbourhood. The restriction on the use o
 \paragraph{Existing approaches and products.} There are four relevant families of approaches: (i)~\emph{Hotspot mapping} (KDE, grids, ellipses) is simple and easy to interpret but only extrapolates historical density \citep{chainey2008}. (ii)~\emph{Conventional machine learning} (LR, SVM, random forest) combines multiple historical features but does not account for neighbouring areas unless this information is explicitly included in the features \citep{zhang2020}. (iii)~\emph{Graph and spatio-temporal networks} learn from neighbouring areas \citep{kipf2017,han2020} but, as this study demonstrates, they do not necessarily outperform strong baselines. (iv) \emph{Deployed predictive-policing products}, such as the grid-based service discussed in Assessment~1, are proprietary; hence, a quantitative comparison with them is not possible. The algorithm of a similar product has been examined for bias \citep{lum2016}, and its underlying model has been tested in field trials \citep{mohler2015}. Therefore, this report compares only methods that can be re-run on the same public data.
 
 \section{Problem Significance}
-Area-level planning can be justified by the concentration of recorded incidents. In this extract, the top 10\% of occupied grid cells contain approximately 30\% of incidents, while the top 20\% contain about 49\% (Figure~\ref{fig:eda}B). When available prevention capacity is fixed---for street outreach, lighting and environmental design, victim-support outreach or patrol---accurately ranking areas where recorded harm is expected to concentrate can help use resources more efficiently. Field research indicates that forecasting can influence outcomes: \citet{mohler2015} found that epidemic-type forecasts identified 1.4--2.2 times as much crime as analysts' hotspot maps, and patrols guided by these forecasts were associated with a 7.4\% reduction in crime volume relative to patrol time.
+Area-level planning can be justified by the concentration of recorded incidents. In this extract, the top 10\% of occupied grid cells contain approximately 30\% of incidents, while the top 20\% contain about 49\% (Figure~\ref{fig:eda}B). When available prevention capacity is fixed---for street outreach, lighting and environmental design, victim-support outreach or patrol---accurately ranking areas where recorded harm is expected to concentrate can help use resources more efficiently. As observed in field experiments, forecasts can have an impact on the results since \citet{mohler2015} discovered that forecasts based on epidemics predicted 1.4--2.2 times more crime than hotspot maps created by analysts and led to a 7.4\% decrease in crime volume per unit of patrol time.
 
-This literature also highlights the risks involved. Recorded crime reflects both where harm occurs and patterns of police activity. Models trained on these records can increase attention on neighbourhoods that are already heavily policed \citep{lum2016,ensign2018}. Chicago provides a documented example of predictive tools developed using data shaped by contested policing practices \citep{richardson2019}. The study's significance therefore depends not only on accuracy but also on whether a model improves on simple, auditable alternatives and is implemented with safeguards. Showing that a simple persistence rule already captures most of the achievable predictive performance (Chapter~\ref{ch:results}) is itself practically important because it reduces costs and makes the system easier to explain to the public.
+The literature also brings out the risks associated with such methods. Recorded crimes represent both the location of the crime and the pattern of police presence. Algorithms based on such crimes will end up emphasizing those neighbourhoods which have heavy police presence \citep{lum2016,ensign2018}. Chicago represents a case where predictive algorithms have been developed from data based on policing that is itself contentious \citep{richardson2019}. The importance of the study is not only about accuracy but also whether the model is better than simpler, auditable models and whether the implementation process has proper checks and balances. The fact that a simple persistence model can capture much of the predictive power is an important one for practical reasons.
 
-Chicago was chosen because CPD provides geocoded incident-level data with a stable schema. The context behind Assessment~1 included New Zealand, but no comparable coordinate-level open incident data were found; hence, transferring to Auckland or any New Zealand environment has not yet been tried and would require re-estimation on local data.
+The reason for choosing Chicago is that CPD offers geocoded incident level data using a consistent schema. The context surrounding Assessment~1 had New Zealand in mind, but there is no similar data available in coordinates for incident level data; therefore, moving to Auckland or any other city in New Zealand has not yet been attempted.
 
 \section{Research Objectives}
-The five aims identified during Assessment~1 were kept but made measurable and leakage-proof (Table~\ref{tab:ro}). Any changes made are clearly stated, and Appendix~\ref{app:a1} (Table~\ref{tab:a1}) traces each Assessment~1 claim and plan to show how it ended up, so the comparison with the proposal is clear. No deadlines are provided since the work was done during the assessment period.
+The five objectives identified in Assessment~1 were retained, but they were quantifiable and leak-proof (Table~\ref{tab:ro}). The changes that have been made are clearly stated, and Appendix~\ref{app:a1} (Table~\ref{tab:a1}) shows the process through which each claim and objective in Assessment~1 was developed. Deadlines are not provided because the work was completed within the assessment period.
 
 \begin{table}[H]
 \centering\small
@@ -607,12 +621,12 @@ LR was chosen as the Phase~2 classifier based on the pre-stated criterion becaus
 \label{fig:rocpr}
 \end{figure}
 
-The curves in Figure~\ref{fig:rocpr} show the same ranking. The GCN's precision drops sharply beyond 50\% recall, indicating that it confuses moderately high cells with their neighbours. The reliability diagram suggests that LR and the MLP are slightly overconfident in the 0.6--0.9 range---an expected effect of class weighting, which shifts probabilities upward---while RF is closest to the diagonal (Brier 0.023). Calibration matters for the application only if probabilities are displayed; therefore, the design presents ranks and calibrated bands rather than raw probabilities (Section~\ref{sec:app}).
+The curves in Figure~\ref{fig:rocpr} show the same ranking. The GCN's precision drops sharply beyond 50\% recall, indicating that it confuses moderately high cells with their neighbours. The reliability diagram suggests that LR and the MLP are slightly overconfident in the 0.6--0.9 range---an expected effect of class weighting, which shifts probabilities upward---while RF is closest to the diagonal (Brier 0.023). Calibration is relevant to the application only when probabilities are shown; hence, the design shows ranks and calibrated bands instead of probabilities (Section~\ref{sec:app}).
 
 
 \subsection{Phase 1: Dominant Crime Type (E3)}
 \label{sec:p1res}
-Forecasting the dominant type was much more challenging (Table~\ref{tab:p1}). The majority-class baseline (\textsc{battery}) achieves a macro-F1 of 0.134; persistence achieves 0.404; and LR achieves 0.498, the highest test macro-F1. The GCN achieves $0.450\pm0.019$  and the GAT $0.450\pm0.010$, both below the SVM (0.467). The validation criterion selected the MLP (validation macro-F1 of 0.520 compared with 0.492 for LR), which achieved $0.482\pm0.018$ on the test periods. LR's higher test score falls within the MLP's seed range and bootstrap interval, so their performance could not be distinguished in this evaluation. RQ1 is therefore answered negatively: the GCN did not outperform the SVM or the non-graph MLP.
+Predicting the predominant category proved much harder (Table \ref{tab:p1}). The majority class baseline (\textsc{battery}) scores a macro-F1 of 0.134; persistence scores 0.404; and LR scores 0.498, the largest test macro-F1. The GCN obtains $0.450\pm0.019$, and the GAT $0.450\pm0.010$, both lower than the SVM (0.467). The validation criterion favored the MLP (validation macro-F1 0.520 compared to 0.492 for LR), and the MLP scored $0.482\pm0.018$ in the test periods. The higher test result for LR is within the seed range and bootstrap confidence interval of the MLP, so no significant difference in performance can be concluded from this experiment. RQ1 is answered in the negative: the GCN does not perform better than the SVM or MLP.
 
 \begin{table}[H]
 \centering\scriptsize
@@ -1123,9 +1137,9 @@ GCN & Low & 0.125 & 0.106 & 0.54 [0.15, 0.90] & 0.044 [0.00, 0.10] & 0.52 & 0.29
 \end{tabular}}
 \end{table}
 
-Three findings follow. First, the \emph{selection rate} is strongly unequal: LR flags 33.7\% of cell-periods in high-hardship areas against 12.5\% in low-hardship areas. This mirrors the recorded base rates almost exactly (34.6\% vs 12.5\%; Spearman correlation between hardship and test victimisation counts 0.37), so the model is not adding a disparity of its own, but it does mean that any use of the ranking directs attention mainly to poorer areas, which is the setting in which the stigma and feedback-loop risks of Section~\ref{sec:limits} apply. Second, \emph{error rates} for Phase~2 are close to parity: recall and false-positive rates for LR overlap across terciles, and the only visible gap (lower recall in low-hardship areas, 0.85 vs 0.97) has wide intervals because each tercile holds only 13--36 high cell-periods. Where there is a difference, high victimisation in better-off areas is the more likely to be missed, so these areas are not over-flagged. Third, Phase~1 is clearly \emph{less accurate in low-hardship areas} (LR error rate 0.49 vs 0.24; macro-F1 0.34 vs 0.56), because those cells have mixed, low-volume crime profiles (Figure~\ref{fig:errmap}B). This supports showing the crime-type forecast only as low-reliability context. The audit is limited: the census indicators date from 2008--2012, the comparison is between areas rather than population groups, labels are recorded incidents and so carry the same reporting bias, and the intervals are wide. It is therefore an error-disparity check, not a full group-fairness audit, and no fairness claim beyond it is made.
+Three findings follow. First, the \emph{selection rate} is strongly unequal: LR flags 33.7\% of cell-periods in high-hardship areas against 12.5\% in low-hardship areas. This mirrors the recorded base rates almost exactly (34.6\% vs 12.5\%; Spearman correlation between hardship and test victimisation counts 0.37), so the model is not adding a disparity of its own, but it does mean that any use of the ranking directs attention mainly to poorer areas, which is the setting in which the stigma and feedback-loop risks of Section~\ref{sec:limits} apply. Second, \emph{error rates} for Phase~2 are close to parity: recall and false-positive rates for LR overlap across terciles, and the only visible gap (lower recall in low-hardship areas, 0.85 vs 0.97) has wide intervals because each tercile holds only 13--36 high cell-periods. Where there is a difference, high victimisation in better-off areas is the more likely to be missed, so these areas are not over-flagged. Third, Phase~1 is \emph{clearly less accurate in low-hardship areas} (LR error rate 0.49 vs 0.24; macro-F1 0.34 vs 0.56), due to their heterogeneous crime profile and low volumes (Figure~\ref{fig:errmap}B). This supports displaying the type-of-crime prediction as only low-reliability context. This audit is restricted to the point where the census indicators are from 2008--2012; it is comparing neighborhoods, it uses labels that are based on recorded crime and thus suffer from the same reporting problem, and the intervals are large. Therefore, it is just an error-disparity audit, not a comprehensive group-fairness audit.
 
-\paragraph{Gradient boosting (E24).} To check whether a stronger tabular learner would change the model choice, histogram gradient boosting (HGB; class-weighted, L2 penalty 1.0) was tuned on the validation periods over learning rate $\{0.03, 0.1\}$, depth $\{3, \text{unlimited}\}$ and $\{100, 300\}$ iterations. For Phase~2 its best validation AP (0.962) was below LR's (0.968), so the pre-stated rule would not select it; on test it reached AP 0.975 and top-20\% macro-F1 0.922 (5 seeds), between persistence and LR. For Phase~1 it reached macro-F1 0.463 (accuracy 0.584, $\kappa=0.37$; validation 0.526), below LR (0.498) and with the same weakness on \textsc{criminal damage} (F1 0.20). A more flexible learner therefore adds no skill here, which agrees with E17 and E19: the limit is the small number of independent cells, not model capacity.
+\paragraph{Gradient boosting (E24).} To determine whether a stronger tabular learner would have an effect on model selection, histogram gradient boosting (HGB; class-weighted, L2 penalty 1.0) was tuned on the validation periods over learning rate $\{0.03, 0.1\}$, depth $\{3, \text{unlimited}\}$ and $\{100, 300\}$ iterations. In Phase~2, its best validation AP (0.962) was lower than LR's (0.968), so that the aforementioned rule would not select it; on test, it scored AP 0.975 and top-20\% macro-F1 0.922 (5 seeds), in-between persistence and LR. In Phase~1, HGB scored macro-F1 0.463 (accuracy 0.584, $\kappa=0.37$; validation 0.526), lower than LR (0.498) and suffering from the same deficiency in predicting \textsc{criminal damage} (F1 0.20). Thus, a more flexible learner does not add any value here, which is consistent with E17 and E19: the problem is not the model capacity but the few independent cells.
 
 \section{Discussion}
 \paragraph{RQ1 (crime type).} No. Under a leakage-safe forecasting design the GCN (macro-F1 0.450) did not outperform the SVM (0.467), the MLP (0.482) or LR (0.498), and the GAT performed as well as the GCN (0.450). The pilot's apparent superiority (66.67\% vs 37.50\% accuracy) was due to a circular problem. Learned models have not been found to outperform persistence for crime type: LR's $+0.09$ macro-F1 (bootstrap CI $[0.006, 0.167]$) is borderline, and the permutation test yields $p=0.077$ (Holm 0.53). In the three-year replication the LR's advantage is reduced to $+0.04$ ($p=0.14$), RF (0.499) and the SVM (0.492) perform best, and the GCN (0.443) is again inferior to them; additional history variables (E17) improved RF (0.518) but not the neural models. RO2 is thus partially achieved.
@@ -1139,11 +1153,11 @@ Three findings follow. First, the \emph{selection rate} is strongly unequal: LR 
 
 
 
-\paragraph{Unexpected findings.} Four findings were unexpected. (i)~LR reproduced the pilot result exactly. (ii)~GCN performance declined monotonically as graph size increased, making graph size a diagnostic for over-smoothing. Neither a GAT with learned attention nor a weighted centroid graph resolved the problem. (iii)~The effect of threshold tuning depended on the number of validation periods: it reduced performance with two periods and had a neutral effect with six. (iv)~Raw features gave LR a higher test AP than the main pipeline, although validation favoured the main pipeline. This discrepancy reinforces the need to base model selection on validation data. These findings informed the history-only rule, the residual GCN, the top-$k$ decision rule and the caution in Section~\ref{sec:posthoc}.
+\paragraph{Unexpected findings.} Four findings were unexpected. (i)~LR reproduced the pilot result exactly. (ii)~GCN performance declined monotonically as graph size increased, making graph size a diagnostic for over-smoothing. Neither the GAT with attention learning nor the weighted centroid graph approach could solve the problem. (iii)~The impact of threshold adjustment was influenced by the number of validation windows: it degraded performance when there were two windows but had no impact with six. (iv)~Raw features led to better test AP for LR compared to the main pipeline, although validation showed better results for the main pipeline. Such inconsistency highlights the importance of choosing a model based on validation data. These results guided the history-only policy, residual GCN, and top-$k$ decision rule in Section~\ref{sec:posthoc}.
 
-\paragraph{Objective attainment.} RO1 accomplished (counts reconcile; pipeline reproducible, including three-year extension); RO2 partly accomplished (forecasting done and evaluated, but no model performed well and the GCN did not outperform the SVM); RO3 accomplished (macro-F1 0.951 $>$ 0.70, though the criterion turned out to be weak); RO4 accomplished (seeds, block bootstrap, permutations, rolling origin, spatial blocks, ablation studies, three-year replication); RO5 accomplished in terms of design and prototype of the batch job, API and dashboard, but not as a deployed system.
+\paragraph{Objective attainment.} RO1 achieved (counts match; pipeline reproducible, including three-year extension); RO2 partially achieved (forecasting done and assessed, but no model did well and GCN failed to outperform the SVM); RO3 achieved (macro-F1 0.951 > 0.70, though the threshold was shown to be weak); RO4 achieved (seeds, block bootstrap, permutations, rolling origin, spatial blocks, ablation studies, three-year replication); RO5 achieved in design and prototype of the batch job, API, and dashboard, but not in deployment.
 
-\paragraph{Issues and challenges encountered.} Table~\ref{tab:issues} records the practical challenges met during the project, how each was handled and what remains open.
+\paragraph{Issues and challenges encountered.} Table~\ref{tab:issues} shows the problems encountered during the project, how they were solved, and what is still unresolved.
 
 \begin{table}[H]
 \centering\scriptsize\renewcommand{\arraystretch}{0.9}
@@ -1198,9 +1212,9 @@ Figure~\ref{fig:arch} shows the proposed architecture of the application.
 
 This section describes how the chosen solution would be converted into a working application. Nothing here has been deployed. The batch scoring job, read-only API and dashboard have been implemented as a prototype (Folder \texttt{Assessment2/app}) and validated automatically (Table~\ref{tab:proto}); the rest are design only.
 
-\paragraph{Users and workflow.} The main users are community safety or crime analysts who develop a 28-day prevention plan such as assigning outreach workers, environmental design reviews, or victim support visits. The workflow includes the following steps: (1)~Once each period ends, the system refreshes the data and ranks all cells; (2)~The analyst sees a list and map of the top 32 cells, along with their history and uncertainty; (3)~The analyst logs a decision (include, exclude, or flag for review) and an explanation; and (4)~After the next period ends, results are compared to predictions. The model never allocates resources automatically.
+\paragraph{Users and workflow.} The primary users are community safety or crime analysts who create a 28-day crime prevention plan like assigning outreach workers, conducting environmental design assessments, and victim visits. The process involves the following stages: (1) ~After each period, the model updates its data and ranks all the cells; (2) ~The analyst sees the top 32 cells ranked by the model with history and uncertainty; (3) ~The analyst logs her/his decision on whether to include, exclude, or review and why; and (4) ~After the end of the next period, results are analyzed relative to forecasts. The model never assigns any resources automatically.
 
-\paragraph{Views.} \emph{Map view}: cells coloured based on forecast rank category (top 10\%, 10\% to 20\%, others), with the DBSCAN micro-hotspot layer and the KDE surface as optional overlays. \emph{Ranked list}: Rank, cell ID and name, forecast score, change in rank compared to previous period, and a time series for the four most recent periods of victimisation counts. \emph{Cell detail}: Sparkline of 13-period history, top three features as indicated by LR coefficients (Table~\ref{tab:imp}), crime type forecast as ``low reliability'' (macro-F1 $\approx0.5$), and an evidence panel specifying model version, training periods, and testing performance. \emph{Uncertainty}: rank intervals from bootstrapping the training cells, and a tag for cells within two ranks of the cut-off, since the 10 test cell-periods within two ranks of the cut-off (3\% of rows) contain 4 of the 10 errors (40\% error rate vs 2\% elsewhere; E20, Figure~\ref{fig:errmap}A).
+\paragraph{Views.} \emph{Map view}: Cells colored based on forecast rank categories (Top 10\%, 10-20\%, etc.), along with the DBSCAN micro-hotspots overlay layer and the KDE surface overlay layer as optionals. \emph{Ranking list}: Rank, cell identifier/name, score, change in rank (compared to last ranking period), and trend of last four victimisation periods. \emph{Cell detail}: Sparkline of 13-period history, top three features as indicated by LR coefficients (Table~\ref{tab:imp}), crime type forecast as ``low reliability'' (macro-F1 $\approx0.5$), and an evidence panel specifying model version, training periods, and testing performance. \emph{Uncertainty}: rank intervals from bootstrapping the training cells, and a tag for cells within two ranks of the cut-off, since the 10 test cell-periods within two ranks of the cut-off (3\% of rows) contain 4 of the 10 errors (40\% error rate vs 2\% elsewhere; E20, Figure~\ref{fig:errmap}A).
 
 \paragraph{API.} The read-only REST service exposes forecasts to the dashboard and other approved systems. The response below is illustrative (the values are not real forecasts).
 \begin{small}
@@ -1248,7 +1262,7 @@ Option & Hourly price (US\$) & Hours per month & Monthly cost (US\$)\\
 
 \paragraph{Security, access and audit.} The access is limited to designated analysts via the single sign-on capability of the organization with role-based privileges (viewer, analyst, administrator). The application keeps only area-based aggregations, while the incidents are stored in the source system. All queries, exports, and analyst overrides are recorded in an append-only audit log, which is used in the bias assessment below.
 
-\paragraph{Responsible-use safeguards.} Interface labels describe outputs as forecasts of recorded incidents, neighbourhood names omitted from exports by default, and a required written reason for any action targeting a flagged neighbourhood. A quarterly check is done to see if forecasted bands align with independent metrics (e.g., hospital assault presentations or victimisation survey, when applicable) in order to see if there is any feedback loop \citep{ensign2018}, and any enforcement-oriented use is paired with non-enforcement interventions. The use of a census-based group-fairness audit is a prerequisite for broader adoption.
+\paragraph{Responsible-use safeguards.} Interface labels describe outputs as forecasts of recorded incidents, neighbourhood names omitted from exports by default, and a required written reason for any action targeting a flagged neighbourhood. A quarterly check is done to see if forecasted bands align with independent metrics (e.g., hospital assault presentations or victimisation survey, when applicable) in order to see if there is any feedback loop \citep{ensign2018}, and any enforcement-oriented use is paired with non-enforcement interventions. The use of a census-based group-fairness audit is a prerequisite for broader adoption. Human oversight is built into the design: forecasts are aggregate decision support only, a human analyst reviews every forecast and keeps the final decision, and no output is used to infer anything about an individual.
 
 \paragraph{Built and tested prototype (E20).} The prototype implements a batch job that fits the model and scores every cell for each period using only historical data. It also produces bootstrap rank intervals and explains the top factors behind the predictions. The prototype includes a read-only JSON API that follows the response schema above, API-key roles, input validation, an append-only audit log and an HTML dashboard with a ranked list and a map. At start-up, it rejects any prediction store whose feature-schema hash differs from the one expected by the code. The serving layer uses only the Python standard library.
 All 20 automated tests summarised in Table~\ref{tab:proto} passed. The parity test confirmed that the forecasts served for the two test periods matched the offline E2 results exactly, with an AP of 0.983, a top-20\% precision of 0.938 and a recall of 0.909. This agreement shows that the preprocessing used to serve forecasts matches the preprocessing used in training. The median latency for 600 mixed requests was 0.40~ms (95th percentile 0.50~ms) on the local machine, so it gives no information on network or load conditions; the prediction store size is 423~kB. The prototype has also demonstrated that the near-cut-off flag is a useful feature, since 10 of the 314 test cell-periods carry it and 4 of those 10 are misclassified, against 6 errors among the other 304. Not implemented: online inference, authentication beyond API keys, automated retraining, drift detectors, fairness review.
@@ -1295,10 +1309,10 @@ Stage & Deliverable & Effort (estimate) & Acceptance criterion\\
 \end{tabularx}
 \end{table}
 
-\paragraph{Innovation and problem-solving.} The design responds to specific issues identified in this study. The top-$k$ rule addresses the threshold instability observed in E4, and the near-cut-off flag targets the errors shown in Figure~\ref{fig:errmap}. The cold-start process addresses the GCN's dependence on a fixed graph, while preprocessing parity addresses the pilot's file-level defects. Delayed-label monitoring and a champion--challenger gate allow more complex models to remain candidates and make them available to users only once they demonstrate added value.
+\paragraph{Innovation and problem-solving.} These design decisions solve the problems raised in this study. Top-$k$ solves the problem of instability of the threshold as seen in E4, whereas near-cutoff takes care of the problem depicted in Figure~\ref{fig:errmap}. Cold start solves the problem of GCN dependency on fixed graph, while preprocessing parity solves the problem of pilot's flaws at file level. Delayed label checking and champion-challenger gating let more sophisticated models become eligible when they bring in value.
 
 \section{Chapter Summary}
-Forecasts tested chronologically under a leakage-safe protocol show that recorded victimisation hotspots are highly predictable (AP 0.983, macro-F1 0.951), with persistence accounting for most of the predictive performance. The pilot-style GCN underperformed because symmetric normalisation over-smoothed the cell-level signal. The residual GCN addressed this problem, but the evaluation found no added benefit from information about neighbouring cells. Forecasting the dominant crime type remains challenging. The findings hold under a narrower violent-crime label and with a gradient-boosting learner, and the area-level disparity audit shows similar error rates but unequal selection rates across hardship terciles. The selected logistic regression model is computationally inexpensive, easy to interpret and robust across periods and areas. The application design incorporates versioning, monitoring and governance to support responsible use of the model as a decision-support tool.
+Predictions evaluated in chronological order using a leakage-free procedure indicate that observed victimisation hot spots are very predictable (AP 0.983, macro-F1 0.951), and persistence explains much of the predictive power. The pilot version of the GCN failed due to over-smoothing of the cell-level signal by symmetric normalisation. The residual GCN solved the issue, yet the evaluation revealed no gains from considering neighbouring cells. It is difficult to forecast the dominant crime type. The results are replicated for the narrower category of violent crimes and for the gradient-boosting learner. The area-level disparity audit reveals similar error rates but different selection rates across hardship terciles. The chosen logistic regression model is fast to compute and interpretable. The application design incorporates versioning, monitoring and governance to support responsible use of the model as a decision-support tool.
 % =====================================================================
 \chapter{Conclusion}
 \label{ch:conc}
@@ -1314,10 +1328,10 @@ The study provides public-sector analysts with an inexpensive, interpretable ran
 
 \paragraph{Future work.} Each item follows from a specific finding:
 \begin{enumerate}
-\item \textbf{More cities and longer histories.} The three-year replication shows that the findings are stable over time in Chicago, but differences of about 0.01 AP still cannot be resolved because the number of cells, not periods, limits the evidence (E19); other cities would add independent cells and test transfer.
-\item \textbf{Non-crime covariates} (population, land use, transit, points of interest), as \citet{zhang2020} found useful, to separate where harm occurs from where it is recorded and to allow population-adjusted rates.
-\item \textbf{Graph models that learn the neighbourhood}---attention-based or learned-adjacency GNNs, and spatio-temporal models such as those of \citet{han2020}---evaluated against the strong persistence and LR baselines established here.
-\item \textbf{Count-based ranking} with properly tuned Poisson or negative-binomial models, since counts carry more information than a binary top-20\% label.
+\item \textbf{More cities and longer histories.} The results prove to be consistent for the three-year replication process in Chicago, but the differences of about 0.01 AP still cannot be resolved since the number of cells, not periods, restricts the evidence (E19). Other cities would add new independent cells and conduct transfer testing.
+\item \textbf{Non-crime covariates}, such as (population, land use, public transport, and points of interest), as per \citet{zhang2020}, are used to distinguish where crime happens and where crime was reported, and to compute population-adjusted rates.
+\item \textbf{Graph models that learn the neighbourhood} attention-based or learned-adjacency GNNs, and spatio-temporal models like the one by \citet{han2020} validated against the very strong persistence and LR baselines we have set here.
+\item \textbf{Count-based ranking} with properly tuned Poisson or negative-binomial models, because counts provide more information than just being in the top 20\%.
 \item \textbf{A fuller fairness and feedback audit} that extends the area-level check of E23 with current census-tract data and independent victimisation measures (surveys, hospital data) before any operational use.
 \item \textbf{A shadow-mode deployment} (Stage~1 of Table~\ref{tab:feas}) to measure performance on genuinely future data and analysts' use of the outputs.
 \end{enumerate}
@@ -1441,6 +1455,8 @@ Setting & Persistence & LR & GCN (5 seeds) & ResGCN (5 seeds)\\
 
 \chapter{Code Structure and Reproduction}
 \label{app:repro}
+The code, results, figures and this report are available at \url{https://github.com/saminatul/IT8105-20251674-samina-area-level-crime-hotspot-prediction}.
+
 \begin{small}
 \begin{verbatim}
 Assessment2/
@@ -1463,7 +1479,7 @@ machinelearningcode/Coding/Dataset/
 \end{small}
 \begingroup
 \raggedright
-\noindent\textbf{Run instructions.} Install Python 3.9+ with \texttt{numpy}, \texttt{pandas}, \texttt{scikit-learn}, \texttt{torch}, \texttt{torch-geometric}, \texttt{pyproj}, \texttt{imbalanced-learn} and \texttt{matplotlib}; then run \texttt{python3 run\_experiments.py} followed by \texttt{python3 figures.py} from \texttt{Assessment2/code}. The pipeline reads the original CSV, rebuilds all intermediate tables in memory and writes every result used in this report. Seeds and splits are fixed, so reruns reproduce the tables up to floating-point differences across hardware. For the three-year replication run \texttt{A2\_DATA=multi python3 run\_experiments.py E1 E3 E4 E8 E9 E10 E16 E19} (and \texttt{A2\_ROLL=15:39:2 A2\_SUFFIX=\_long} with \texttt{E8} for the long rolling origin); this needs the second CSV described in Section~\ref{sec:data}. The extension experiments run with \texttt{python3 extensions.py} after the main run (E23 needs the two City of Chicago files in \path{Dataset/external}). The prototype is built with \texttt{python3 score\_batch.py} and tested with \texttt{python3 test\_app.py} from \texttt{Assessment2/app}. No credentials or personal identifiers are stored; test API keys are generated at run time and never saved; the outputs are cell-level aggregates. The terminal transcripts saved from the runs performed for this submission are in Appendix~\ref{app:logs}.\par\endgroup
+\noindent\textbf{Run instructions.} Install Python 3.9+ with \texttt{numpy}, \texttt{pandas}, \texttt{scikit-learn}, \texttt{torch}, \texttt{torch-geometric}, \texttt{pyproj}, \texttt{imbalanced-learn}, and \texttt{matplotlib}, then execute \texttt{python3 run\_experiments.py} and \texttt{python3 figures.py} in \texttt{Assessment2/code}. The pipeline starts from the initial CSV, recreates all intermediate tables in memory, and outputs all results used in this report. The seeds and splits are fixed so that re-runs will produce identical tables, with differences only due to floating-point inaccuracies. For the three-year replication run \texttt{A2\_DATA=multi python3 run\_experiments.py E1 E3 E4 E8 E9 E10 E16 E19} (and \texttt{A2\_ROLL=15:39:2 A2\_SUFFIX=\_long} with \texttt{E8} for the long rolling origin); this needs the second CSV described in Section~\ref{sec:data}. Extension experiments can be done using the command \texttt{python3 extensions.py} after the main experiment (E23 requires two City of Chicago datasets in \path{Dataset/external}). The prototype is built with \texttt{python3 score\_batch.py} and tested with \texttt{python3 test\_app.py} from \texttt{Assessment2/app}. No credentials or personal identifiers are stored; test API keys are generated at run time and never saved; the outputs are cell-level aggregates. The terminal transcripts saved from the runs performed for this submission are in Appendix~\ref{app:logs}.\par\endgroup
 
 \chapter{Learning Outcomes and Requirements}
 \label{app:lo}
@@ -1574,34 +1590,34 @@ Prototype not deployed; no priced cost estimate & Shadow-mode pilot with an agen
 
 \chapter{Terminal Transcripts of the Runs Performed}
 \label{app:logs}
-The four transcripts below are the terminal output saved while the experiments were run from \texttt{Assessment2/code}. Each command is the one that wrote the file. The text under it is that file, unchanged. These logs cover the post-hoc experiments, the three-year replication, the 12-window rolling origin, and the extension experiments. The result tables in the report are the CSV and JSON files those runs wrote, not a retyping of the screen.
+The transcript files below contain terminal output saved while the experiments were run from \texttt{Assessment2/code}. Each command is the one that wrote its file. Available transcripts are included unchanged; if a file is not bundled, its absence is noted. These logs cover the post-hoc experiments, the three-year replication, the 12-window rolling origin, and the extension experiments. The result tables in the report are the CSV and JSON files those runs wrote, not a retyping of the screen.
 
 \paragraph{Post-hoc experiments (E14--E19).}
 \begin{Verbatim}[fontsize=\scriptsize,breaklines,breakanywhere]
 python3 -u run_experiments.py E14 E15 E16 E17 E18 E19 2>&1 | tee ../evidence/G_posthoc.txt
 \end{Verbatim}
 \noindent Output saved as \path{evidence/G_posthoc.txt}:
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../evidence/G_posthoc.txt}
+\IfFileExists{evidence/G_posthoc.txt}{\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{evidence/G_posthoc.txt}}{\noindent\emph{Transcript file not bundled with this document.}}
 
 \paragraph{Three-year replication.}
 \begin{Verbatim}[fontsize=\scriptsize,breaklines,breakanywhere]
 A2_DATA=multi python3 -u run_experiments.py E1 E3 E4 E8 E9 E10 E16 E19 E13 2>&1 | tee ../evidence/H_multiyear.txt
 \end{Verbatim}
 \noindent Output saved as \path{evidence/H_multiyear.txt}:
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../evidence/H_multiyear.txt}
+\IfFileExists{evidence/H_multiyear.txt}{\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{evidence/H_multiyear.txt}}{\noindent\emph{Transcript file not bundled with this document.}}
 
 \paragraph{Twelve-window rolling origin.}
 \begin{Verbatim}[fontsize=\scriptsize,breaklines,breakanywhere]
 A2_DATA=multi A2_ROLL=15:39:2 A2_SUFFIX=_long python3 -u run_experiments.py E8 2>&1 | tee ../evidence/H_rolling_long.txt
 \end{Verbatim}
 \noindent Output saved as \path{evidence/H_rolling_long.txt}:
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../evidence/H_rolling_long.txt}
+\IfFileExists{evidence/H_rolling_long.txt}{\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{evidence/H_rolling_long.txt}}{\noindent\emph{Transcript file not bundled with this document.}}
 
 \paragraph{Extension experiments (E22--E24).}
 \begin{Verbatim}[fontsize=\scriptsize,breaklines,breakanywhere]
 python3 -u extensions.py 2>&1 | tee ../evidence/I_extensions.txt
 \end{Verbatim}
 \noindent Output saved as \path{evidence/I_extensions.txt}:
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{../evidence/I_extensions.txt}
+\IfFileExists{evidence/I_extensions.txt}{\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere]{evidence/I_extensions.txt}}{\noindent\emph{Transcript file not bundled with this document.}}
 
 \end{document}
